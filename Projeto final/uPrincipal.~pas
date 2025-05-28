@@ -1,0 +1,63 @@
+unit uPrincipal;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ToolWin, ComCtrls, Menus;
+
+type
+  TfrPrincipal = class(TForm)
+    MainMenu1: TMainMenu;
+    Cadastros1: TMenuItem;
+    pessoa: TMenuItem;
+    espaco: TMenuItem;
+    locacao: TMenuItem;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frPrincipal: TfrPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+{ TfrPrincipal }
+
+procedure TfrPrincipal.carregar;
+begin
+  inherited;
+
+end;
+
+function TfrPrincipal.consultar: TForm;
+begin
+
+end;
+
+procedure TfrPrincipal.salvar;
+begin
+  inherited;
+
+end;
+
+function TfrPrincipal.setEdit_id: TEdit;
+begin
+
+end;
+
+function TfrPrincipal.setIndice: String;
+begin
+
+end;
+
+function TfrPrincipal.setTabela: TClientDataSet;
+begin
+
+end;
+
+end.
