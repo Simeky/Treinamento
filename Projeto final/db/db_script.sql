@@ -35,25 +35,25 @@ CREATE DOMAIN DM_ETAPA AS CHAR(1);
   Tables
 */
 
-CREATE TABLE t_empresa (
-  bd_id_emp integer,
-  bd_nome_fantasia_emp dm_nome,
-  bd_razao_social_emp dm_nome,
-  bd_cnpj_emp char(18), -- 00.000.000/0000-00
-  bd_inscricao_estadual_emp varchar(30),
-  bd_inscricao_municipal_emp varchar(30),
-  bd_telefone_emp char(15), -- (00) 90000-0000
-  bd_email_emp dm_email,
-  bd_cep_emp char(9),
-  bd_uf_emp char(2),
-  bd_cidade_emp varchar(100),
-  bd_bairro_emp dm_nome,
-  bd_logradouro_emp dm_nome,
-  bd_site_emp varchar(100),
-  bd_fundacao_emp date,
-  bd_tipo_emp varchar(50), -- Ex: MEI, LTDA
-  bd_status_emp boolean,
-  constraint pk_empresa primary key(bd_id_emp)
+Create table t_empresa (
+bd_id_emp integer,
+bd_nome_fantasia_emp dm_nome,
+bd_razao_social_emp dm_nome,
+bd_cnpj_emp char(18), -- 00.000.000/0000-00
+bd_inscricao_estadual_emp varchar(30),
+bd_inscricao_municipal_emp varchar(30),
+bd_telefone_emp char(15), -- (00) 90000-0000
+bd_email_emp dm_email,
+bd_cep_emp char(9),
+bd_uf_emp char(2),
+bd_cidade_emp varchar(100),
+bd_bairro_emp dm_nome,
+bd_logradouro_emp dm_nome,
+bd_site_emp varchar(100),
+bd_fundacao_emp date,
+bd_tipo_emp varchar(50), -- Ex: MEI, LTDA
+bd_status_emp boolean,
+constraint pk_empresa primary key(bd_id_emp)
 );
 
 Create table t_pessoa (
@@ -119,3 +119,11 @@ begin
     into new.bd_id_pes;
 end
 
+CREATE trigger t_empresa_bi_autoin for t_empresa
+active before insert position 0
+AS
+begin
+  if (coalesce(new.bd_id_emp, 0) <= 0) then
+    select coalesce(max(bd_id_emp), 0) + 1 from t_empresa
+    into new.bd_id_emp;
+end
