@@ -1,0 +1,102 @@
+inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
+  Left = 625
+  Top = 284
+  Width = 274
+  Height = 241
+  Caption = 'Cadastro Pessoa'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited tb_ferramentas: TToolBar
+    Width = 258
+  end
+  inherited pa_cadastro: TPanel
+    Width = 258
+    Height = 156
+    object la_id_pes: TLabel
+      Left = 32
+      Top = 16
+      Width = 49
+      Height = 13
+      Caption = 'ID Pessoa'
+    end
+    object la_nome_pes: TLabel
+      Left = 8
+      Top = 40
+      Width = 75
+      Height = 13
+      Caption = 'Nome Completo'
+    end
+    object la_email_pes: TLabel
+      Left = 52
+      Top = 64
+      Width = 28
+      Height = 13
+      Caption = 'E-mail'
+    end
+    object la_cpf_pes: TLabel
+      Left = 60
+      Top = 88
+      Width = 20
+      Height = 13
+      Caption = 'CPF'
+    end
+    object la_id_afi: TLabel
+      Left = 26
+      Top = 112
+      Width = 54
+      Height = 13
+      Caption = 'ID Afilia'#231#227'o'
+    end
+    object ed_id_pes: TEdit_numerico
+      Left = 88
+      Top = 16
+      Width = 121
+      Height = 21
+      TabOrder = 0
+      Text = '0'
+      id = 0
+    end
+    object ed_id_afi: TEdit_numerico
+      Left = 88
+      Top = 112
+      Width = 121
+      Height = 21
+      TabOrder = 4
+      Text = '0'
+      id = 0
+    end
+    object ed_nome_pes: TEdit
+      Left = 88
+      Top = 40
+      Width = 121
+      Height = 21
+      TabOrder = 1
+    end
+    object ed_email_pes: TEdit
+      Left = 88
+      Top = 64
+      Width = 121
+      Height = 21
+      TabOrder = 2
+    end
+    object med_cpf_pes: TMaskEdit
+      Left = 88
+      Top = 88
+      Width = 120
+      Height = 21
+      EditMask = '000\.000\.000\-00;1;_'
+      MaxLength = 14
+      TabOrder = 3
+      Text = '   .   .   -  '
+    end
+  end
+  inherited il_images: TImageList
+    Left = 536
+  end
+  inherited il_hot_images: TImageList
+    Left = 568
+  end
+  inherited il_disable_images: TImageList
+    Left = 600
+  end
+end
