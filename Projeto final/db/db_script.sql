@@ -88,7 +88,7 @@ bd_id_ses integer,
 bd_id_pes integer not null,
 bd_id_esp integer not null,
 bd_id_evento integer not null,
-bd_etapa_ses dm_nome,    -- Ex: Primeira etapa/etapa 1, Primeiro intervalo/intervalo 1
+bd_etapa_ses dm_etapa,    -- Ex: Primeira etapa/etapa 1, Primeiro intervalo/intervalo 1
 bd_inicio_ses timestamp,
 bd_fim_ses timestamp,
 constraint pk_sessao primary key(bd_id_ses),
