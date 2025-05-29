@@ -11,8 +11,12 @@ type
     MainMenu1: TMainMenu;
     Cadastros1: TMenuItem;
     pessoa: TMenuItem;
-    espaco: TMenuItem;
-    locacao: TMenuItem;
+    local: TMenuItem;
+    sessao: TMenuItem;
+    empresa: TMenuItem;
+    evento: TMenuItem;
+    procedure pessoaClick(Sender: TObject);
+    procedure empresaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -24,40 +28,20 @@ var
 
 implementation
 
+uses uCadastroPessoaMDI, uCadastroEmpresaMDI;
+
 {$R *.dfm}
 
 { TfrPrincipal }
 
-procedure TfrPrincipal.carregar;
+procedure TfrPrincipal.pessoaClick(Sender: TObject);
 begin
-  inherited;
-
+   TfrCadastroPessoaMDI.Create(self);
 end;
 
-function TfrPrincipal.consultar: TForm;
+procedure TfrPrincipal.empresaClick(Sender: TObject);
 begin
-
-end;
-
-procedure TfrPrincipal.salvar;
-begin
-  inherited;
-
-end;
-
-function TfrPrincipal.setEdit_id: TEdit;
-begin
-
-end;
-
-function TfrPrincipal.setIndice: String;
-begin
-
-end;
-
-function TfrPrincipal.setTabela: TClientDataSet;
-begin
-
+  TfrCadastroEmpresaMDI.Create(self);
 end;
 
 end.

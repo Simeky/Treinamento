@@ -8,7 +8,9 @@ uses
   uCadastroPadraoMDI in 'Cadastros\uCadastroPadraoMDI.pas' {frCadastroPadraoMDI},
   uConsultaPadraoMDI in 'Consultas\uConsultaPadraoMDI.pas' {frConsultaPadraoMDI},
   uCadastroPessoaMDI in 'Cadastros\uCadastroPessoaMDI.pas' {frCadastroPessoaMDI},
-  uConsultaPessoaMDI in 'Consultas\uConsultaPessoaMDI.pas' {frConsultaPessoaMDI};
+  uConsultaPessoaMDI in 'Consultas\uConsultaPessoaMDI.pas' {frConsultaPessoaMDI},
+  uCadastroEmpresaMDI in 'uCadastroEmpresaMDI.pas' {frCadastroEmpresaMDI},
+  uConsultaEmpresaMDI in 'Consultas\uConsultaEmpresaMDI.pas' {frConsultaEmpresaMDI};
 
 {$R *.res}
 

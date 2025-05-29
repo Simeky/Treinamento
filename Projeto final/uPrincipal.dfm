@@ -1,8 +1,10 @@
 object frPrincipal: TfrPrincipal
-  Left = 264
-  Top = 261
-  Width = 1043
-  Height = 540
+  Left = -8
+  Top = -8
+  Width = 1552
+  Height = 832
+  Align = alClient
+  AutoSize = True
   Caption = 'Principal'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -22,12 +24,20 @@ object frPrincipal: TfrPrincipal
       Caption = 'Cadastros'
       object pessoa: TMenuItem
         Caption = 'Pessoa'
+        OnClick = pessoaClick
       end
-      object espaco: TMenuItem
-        Caption = 'Espa'#231'o'
+      object local: TMenuItem
+        Caption = 'Local'
       end
-      object locacao: TMenuItem
-        Caption = 'Loca'#231#227'o'
+      object sessao: TMenuItem
+        Caption = 'Sess'#227'o'
+      end
+      object empresa: TMenuItem
+        Caption = 'Empresa'
+        OnClick = empresaClick
+      end
+      object evento: TMenuItem
+        Caption = 'Evento'
       end
     end
   end

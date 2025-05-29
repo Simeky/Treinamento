@@ -49,7 +49,7 @@ begin
   ed_nome_pes.Text  := tabela.FieldByName('bd_nome_pes').AsString;
   ed_email_pes.Text := tabela.FieldByName('bd_email_pes').AsString;
   med_cpf_pes.Text  := tabela.FieldByName('bd_cpf_pes').AsString;
-  ed_id_afi.Text    := tabela.FieldByName('bd_id_afi').AsString;
+  ed_id_afi.Text    := tabela.FieldByName('bd_id_emp').AsString;
 end;
 
 function TfrCadastroPessoaMDI.consultar: TForm;
@@ -64,7 +64,7 @@ begin
   tabela.FieldByName('bd_nome_pes').AsString  := ed_nome_pes.Text;
   tabela.FieldByName('bd_email_pes').AsString := ed_email_pes.Text;
   tabela.FieldByName('bd_cpf_pes').AsString   := med_cpf_pes.Text;
-  tabela.FieldByName('bd_id_afi').AsInteger   := StrToIntDef(ed_id_afi.Text, 0);
+  tabela.FieldByName('bd_id_emp').AsInteger   := StrToIntDef(ed_id_afi.Text, 0);
 end;
 
 function TfrCadastroPessoaMDI.setEdit_id: TEdit;

@@ -1,4 +1,4 @@
-unit uConsultaPessoaMDI;
+unit uConsultaEmpresaMDI;
 
 interface
 
@@ -8,7 +8,7 @@ uses
   ToolWin, DBClient;
 
 type
-  TfrConsultaPessoaMDI = class(TfrConsultaPadraoMDI)
+  TfrConsultaEmpresaMDI = class(TfrConsultaPadraoMDI)
   private
     { Private declarations }
   public
@@ -18,7 +18,7 @@ type
   end;
 
 var
-  frConsultaPessoaMDI: TfrConsultaPessoaMDI;
+  frConsultaEmpresaMDI: TfrConsultaEmpresaMDI;
 
 implementation
 
@@ -26,16 +26,16 @@ uses udmTreinamento;
 
 {$R *.dfm}
 
-{ TfrConsultaPessoaMDI }
+{ TfrConsultaEmpresaMDI }
 
-function TfrConsultaPessoaMDI.setChave: String;
+function TfrConsultaEmpresaMDI.setChave: String;
 begin
-  Result := 'bd_id_pes';
+  Result := 'bd_id_emp';
 end;
 
-function TfrConsultaPessoaMDI.setTabela: TClientDataSet;
+function TfrConsultaEmpresaMDI.setTabela: TClientDataSet;
 begin
-  Result := dmTreinamento.cds_pessoa;
+  Result := dmTreinamento.cds_empresa;
 end;
 
 end.

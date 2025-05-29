@@ -11,8 +11,12 @@ type
     MainMenu1: TMainMenu;
     Cadastros1: TMenuItem;
     pessoa: TMenuItem;
-    espaco: TMenuItem;
-    locacao: TMenuItem;
+    local: TMenuItem;
+    sessao: TMenuItem;
+    empresa: TMenuItem;
+    evento: TMenuItem;
+    procedure pessoaClick(Sender: TObject);
+    procedure empresaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -24,8 +28,20 @@ var
 
 implementation
 
+uses uCadastroPessoaMDI, uCadastroEmpresaMDI;
+
 {$R *.dfm}
 
 { TfrPrincipal }
+
+procedure TfrPrincipal.pessoaClick(Sender: TObject);
+begin
+   TfrCadastroPessoaMDI.Create(self);
+end;
+
+procedure TfrPrincipal.empresaClick(Sender: TObject);
+begin
+  TfrCadastroEmpresaMDI.Create(self);
+end;
 
 end.

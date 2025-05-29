@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, uConsultaPadraoMDI, DB, ImgList, Grids, DBGrids, ComCtrls,
-  ToolWin;
+  ToolWin, DBClient;
 
 type
   TfrConsultaPessoaMDI = class(TfrConsultaPadraoMDI)
@@ -13,6 +13,8 @@ type
     { Private declarations }
   public
     { Public declarations }
+    function setTabela: TClientDataSet; override;
+    function setChave: String; override;
   end;
 
 var
@@ -23,5 +25,17 @@ implementation
 uses udmTreinamento;
 
 {$R *.dfm}
+
+{ TfrConsultaPessoaMDI }
+
+function TfrConsultaPessoaMDI.setChave: String;
+begin
+  Result := 'bd_id_pes';
+end;
+
+function TfrConsultaPessoaMDI.setTabela: TClientDataSet;
+begin
+  Result := dmTreinamento.cds_pessoa;
+end;
 
 end.

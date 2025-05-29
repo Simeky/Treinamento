@@ -1,10 +1,10 @@
 object dmTreinamento: TdmTreinamento
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 561
-  Top = 228
+  Left = 592
+  Top = 223
   Height = 297
-  Width = 251
+  Width = 423
   object SQLConnection: TSQLConnection
     ConnectionName = 'DB2Connection'
     DriverName = 'DB2'
@@ -20,8 +20,8 @@ object dmTreinamento: TdmTreinamento
       'LocaleCode=0000'
       'DB2 TransIsolation=ReadCommited')
     VendorLib = 'db2cli.dll'
-    Left = 104
-    Top = 8
+    Left = 192
+    Top = 16
   end
   object t_pessoa: TSQLTable
     MaxBlobSize = -1
@@ -42,42 +42,80 @@ object dmTreinamento: TdmTreinamento
     Left = 32
     Top = 192
   end
-  object t_espaco: TSQLTable
+  object t_local: TSQLTable
     MaxBlobSize = -1
     SQLConnection = SQLConnection
-    TableName = 'T_ESPACO'
-    Left = 104
+    TableName = 'T_LOCAL'
+    Left = 112
     Top = 72
   end
-  object dsp_espaco: TDataSetProvider
-    DataSet = t_espaco
-    Left = 104
+  object dsp_local: TDataSetProvider
+    DataSet = t_local
+    Left = 112
     Top = 136
   end
-  object cds_espaco: TClientDataSet
+  object cds_local: TClientDataSet
     Aggregates = <>
     Params = <>
-    ProviderName = 'dsp_espaco'
-    Left = 104
+    ProviderName = 'dsp_local'
+    Left = 112
     Top = 192
   end
-  object t_etapa: TSQLTable
+  object t_sessao: TSQLTable
     MaxBlobSize = -1
     SQLConnection = SQLConnection
-    TableName = 'T_ETAPA'
-    Left = 168
+    TableName = 'T_SESSAO'
+    Left = 192
     Top = 72
   end
-  object dsp_etapa: TDataSetProvider
-    DataSet = t_etapa
-    Left = 168
+  object dsp_sessao: TDataSetProvider
+    DataSet = t_sessao
+    Left = 192
     Top = 136
   end
-  object cds_etapa: TClientDataSet
+  object cds_sessao: TClientDataSet
     Aggregates = <>
     Params = <>
-    ProviderName = 'dsp_etapa'
-    Left = 168
+    ProviderName = 'dsp_sessao'
+    Left = 192
+    Top = 192
+  end
+  object t_empresa: TSQLTable
+    MaxBlobSize = -1
+    SQLConnection = SQLConnection
+    TableName = 'T_EMPRESA'
+    Left = 272
+    Top = 72
+  end
+  object dsp_empresa: TDataSetProvider
+    DataSet = t_empresa
+    Left = 272
+    Top = 136
+  end
+  object cds_empresa: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsp_empresa'
+    Left = 272
+    Top = 192
+  end
+  object t_evento: TSQLTable
+    MaxBlobSize = -1
+    SQLConnection = SQLConnection
+    TableName = 'T_EVENTO'
+    Left = 352
+    Top = 72
+  end
+  object dsp_evento: TDataSetProvider
+    DataSet = t_evento
+    Left = 352
+    Top = 136
+  end
+  object cds_evento: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsp_evento'
+    Left = 352
     Top = 192
   end
 end

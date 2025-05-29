@@ -12,12 +12,18 @@ type
     t_pessoa: TSQLTable;
     dsp_pessoa: TDataSetProvider;
     cds_pessoa: TClientDataSet;
-    t_espaco: TSQLTable;
-    dsp_espaco: TDataSetProvider;
-    cds_espaco: TClientDataSet;
-    t_etapa: TSQLTable;
-    dsp_etapa: TDataSetProvider;
-    cds_etapa: TClientDataSet;
+    t_local: TSQLTable;
+    dsp_local: TDataSetProvider;
+    cds_local: TClientDataSet;
+    t_sessao: TSQLTable;
+    dsp_sessao: TDataSetProvider;
+    cds_sessao: TClientDataSet;
+    t_empresa: TSQLTable;
+    dsp_empresa: TDataSetProvider;
+    cds_empresa: TClientDataSet;
+    t_evento: TSQLTable;
+    dsp_evento: TDataSetProvider;
+    cds_evento: TClientDataSet;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
