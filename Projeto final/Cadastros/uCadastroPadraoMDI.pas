@@ -76,6 +76,9 @@ begin
         else
         if self.Components[i] is TMaskEdit then
           TMaskEdit(self.Components[i]).Clear
+        else
+        if self.Components[i] is TDateTimePicker then
+          TDateTimePicker(self.Components[i]).CleanupInstance
       end;
   end;
 
@@ -160,24 +163,31 @@ begin
 end;
 
 procedure TfrCadastroPadraoMDI.tbt_cancelarClick(Sender: TObject);
+var
+  wIndice : String;
+  wEdit   : TEdit;
 begin
   inherited;
-  if MessageDlg('Deseja realmente excluir esse registro?', mtInformation, [mbYes, mbNo], 0) = mrYes then
-  begin
-    if Assigned(f_tabela) and Assigned(f_edit_id) then
+  wIndice := f_indice;
+  wEdit   := f_edit_id;
+  //if MessageDlg('Deseja realmente excluir esse registro?', mtInformation, [mbYes, mbNo], 0) = mrYes then
+  //begin    ta bugado
+    if Assigned(f_tabela) and Assigned(wEdit) then
     begin
-      f_tabela.IndexFieldNames := f_indice;
-      if f_tabela.FindKey([StrToIntDef(Trim(f_edit_id.Text), 0)]) then
+      f_tabela.IndexFieldNames := wIndice;
+      if f_tabela.FindKey([StrToIntDef(Trim(wEdit.Text), 0)]) then
         f_tabela.Delete;
 
       f_tabela.ApplyUpdates(0);
       f_tabela.Refresh;
 
+      MessageDlg('Registro excluído com sucesso', mtInformation, [mbOK], 0);
+
       if f_edit_id.CanFocus then
         f_edit_id.SetFocus;
 
     end;
-  end;
+  //end;
 end;
 
 procedure TfrCadastroPadraoMDI.FormKeyDown(Sender: TObject; var Key: Word;

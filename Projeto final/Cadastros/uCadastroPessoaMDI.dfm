@@ -1,9 +1,14 @@
 inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
-  Left = 625
-  Top = 284
+  Left = 615
+  Top = 237
   Width = 274
   Height = 241
   Caption = 'Cadastro Pessoa'
+  Constraints.MaxHeight = 241
+  Constraints.MaxWidth = 274
+  Constraints.MinHeight = 241
+  Constraints.MinWidth = 274
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited tb_ferramentas: TToolBar

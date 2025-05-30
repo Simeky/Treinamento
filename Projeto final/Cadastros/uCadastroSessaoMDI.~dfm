@@ -1,314 +1,130 @@
-inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
-  Left = 1
-  Top = 174
-  VertScrollBar.Range = 0
-  Anchors = []
-  AutoScroll = False
-  Caption = 'Cadastro Empresa'
-  ClientHeight = 230
-  ClientWidth = 1526
-  Constraints.MaxHeight = 269
-  Constraints.MinHeight = 269
+inherited frCadastroSessaoMDI: TfrCadastroSessaoMDI
+  Left = 928
+  Top = 193
+  Width = 386
+  Height = 267
+  Caption = 'Cadastro Sess'#227'o'
+  Constraints.MaxHeight = 267
+  Constraints.MinHeight = 267
+  Constraints.MinWidth = 386
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited tb_ferramentas: TToolBar
-    Width = 1526
+    Width = 370
   end
   inherited pa_cadastro: TPanel
-    Width = 1526
-    Height = 184
-    AutoSize = True
-    object la_id_emp: TLabel
-      Left = 24
+    Width = 370
+    Height = 182
+    object la_id_ses: TLabel
+      Left = 40
       Top = 16
-      Width = 55
+      Width = 49
       Height = 13
-      Caption = 'ID Empresa'
+      Caption = 'ID Sess'#227'o'
     end
-    object la_nome_fantasia_emp: TLabel
+    object la_id_pes: TLabel
+      Left = 192
+      Top = 16
+      Width = 49
+      Height = 13
+      Caption = 'ID Pessoa'
+    end
+    object la_id_loc: TLabel
+      Left = 48
+      Top = 48
+      Width = 40
+      Height = 13
+      Caption = 'ID Local'
+    end
+    object la_id_eve: TLabel
+      Left = 192
+      Top = 48
+      Width = 48
+      Height = 13
+      Caption = 'ID Evento'
+    end
+    object la_etapa_ses: TLabel
+      Left = 7
+      Top = 80
+      Width = 84
+      Height = 13
+      Caption = 'Etapa da Sess'#227'o '
+    end
+    object la_inicio_ses: TLabel
       Left = 8
-      Top = 48
-      Width = 71
-      Height = 13
-      Caption = 'Nome Fantasia'
-    end
-    object la_razao_social_emp: TLabel
-      Left = 736
-      Top = 48
-      Width = 63
-      Height = 13
-      Caption = 'Raz'#227'o Social'
-    end
-    object la_cnpj_emp: TLabel
-      Left = 296
-      Top = 16
-      Width = 27
-      Height = 13
-      Caption = 'CNPJ'
-    end
-    object la_inscricao_estadual_emp: TLabel
-      Left = 744
-      Top = 16
-      Width = 82
-      Height = 13
-      Caption = 'Incri'#231#227'o Estadual'
-    end
-    object la_inscricao_municipal_emp: TLabel
-      Left = 1128
-      Top = 16
-      Width = 91
-      Height = 13
-      Caption = 'Inscri'#231#227'o Municipal'
-    end
-    object la_telefone_emp: TLabel
-      Left = 1288
-      Top = 80
-      Width = 42
-      Height = 13
-      Caption = 'Telefone'
-    end
-    object la_email_emp: TLabel
-      Left = 50
-      Top = 80
-      Width = 28
-      Height = 13
-      Caption = 'E-mail'
-    end
-    object la_cep_emp: TLabel
-      Left = 560
-      Top = 16
-      Width = 21
-      Height = 13
-      Caption = 'CEP'
-    end
-    object la_uf_emp: TLabel
-      Left = 64
       Top = 112
-      Width = 14
+      Width = 80
       Height = 13
-      Caption = 'UF'
+      Caption = 'In'#237'cio da Sess'#227'o'
     end
-    object la_cidade_emp: TLabel
-      Left = 136
-      Top = 112
-      Width = 33
-      Height = 13
-      Caption = 'Cidade'
-    end
-    object la_bairro_emp: TLabel
-      Left = 648
-      Top = 112
-      Width = 27
-      Height = 13
-      Caption = 'Bairro'
-    end
-    object la_logradouro_emp: TLabel
-      Left = 1008
-      Top = 112
-      Width = 54
-      Height = 13
-      Caption = 'Logradouro'
-    end
-    object la_complemento_emp: TLabel
-      Left = 14
+    object la_fim_ses: TLabel
+      Left = 16
       Top = 144
-      Width = 64
+      Width = 69
       Height = 13
-      Caption = 'Complemento'
+      Caption = 'Fim da Sess'#227'o'
     end
-    object la_site_emp: TLabel
-      Left = 648
-      Top = 80
-      Width = 18
-      Height = 13
-      Caption = 'Site'
-    end
-    object la_fundacao_emp: TLabel
-      Left = 368
-      Top = 144
-      Width = 86
-      Height = 13
-      Caption = 'Data de funda'#231#227'o'
-    end
-    object la_tipo_emp: TLabel
-      Left = 928
-      Top = 144
-      Width = 21
-      Height = 13
-      Caption = 'Tipo'
-    end
-    object la_num_endereco_emp: TLabel
-      Left = 632
-      Top = 144
-      Width = 100
-      Height = 13
-      Caption = 'N'#250'mero de endere'#231'o'
-    end
-    object ed_id_emp: TEdit_numerico
-      Left = 88
+    object ed_id_ses: TEdit_numerico
+      Left = 96
       Top = 16
-      Width = 121
-      Height = 21
-      TabOrder = 0
-      Text = '0'
-      id = 0
-    end
-    object ed_nome_fantasia_emp: TEdit
-      Left = 88
-      Top = 48
-      Width = 641
-      Height = 21
-      TabOrder = 5
-    end
-    object ed_razao_social_emp: TEdit
-      Left = 808
-      Top = 48
-      Width = 609
-      Height = 21
-      TabOrder = 6
-    end
-    object med_cnpj_emp: TMaskEdit
-      Left = 328
-      Top = 16
-      Width = 105
-      Height = 21
-      EditMask = '00\.000\.000\/0000\-00;0;_'
-      MaxLength = 18
-      TabOrder = 1
-    end
-    object med_cep_emp: TMaskEdit
-      Left = 584
-      Top = 16
-      Width = 49
-      Height = 21
-      EditMask = '00000\-00;0;_'
-      MaxLength = 8
-      TabOrder = 2
-    end
-    object ed_inscricao_estadual_emp: TEdit_numerico
-      Left = 840
-      Top = 16
-      Width = 185
-      Height = 21
-      TabOrder = 3
-      Text = '0'
-      id = 0
-    end
-    object ed_inscricao_municipal_emp: TEdit_numerico
-      Left = 1232
-      Top = 16
-      Width = 185
-      Height = 21
-      TabOrder = 4
-      Text = '0'
-      id = 0
-    end
-    object ckb_matriz_emp: TCheckBox
-      Left = 1216
-      Top = 144
-      Width = 49
-      Height = 17
-      Alignment = taLeftJustify
-      Caption = 'Matriz'
-      TabOrder = 18
-    end
-    object ckb_ativa_emp: TCheckBox
-      Left = 1376
-      Top = 144
-      Width = 41
-      Height = 17
-      Alignment = taLeftJustify
-      Caption = 'Ativa'
-      TabOrder = 19
-    end
-    object dtp_fundacao_emp: TDateTimePicker
-      Left = 464
-      Top = 144
       Width = 89
       Height = 21
-      Date = 45806.628773703710000000
-      Format = 'dd/MM/yyyy'
-      Time = 45806.628773703710000000
-      TabOrder = 15
-    end
-    object med_telefone_emp: TMaskEdit
-      Left = 1336
-      Top = 80
-      Width = 81
-      Height = 21
-      EditMask = '!\(00\) 90000-0000;1;_'
-      MaxLength = 15
-      TabOrder = 9
-      Text = '(  )      -    '
-    end
-    object ed_email_emp: TEdit
-      Left = 88
-      Top = 80
-      Width = 481
-      Height = 21
-      TabOrder = 7
-    end
-    object ed_site_emp: TEdit
-      Left = 672
-      Top = 80
-      Width = 513
-      Height = 21
-      TabOrder = 8
-    end
-    object med_uf_emp: TMaskEdit
-      Left = 88
-      Top = 112
-      Width = 25
-      Height = 21
-      EditMask = 'LL;1;_'
-      MaxLength = 2
-      TabOrder = 10
-      Text = '  '
-    end
-    object ed_cidade_emp: TEdit
-      Left = 176
-      Top = 112
-      Width = 441
-      Height = 21
-      TabOrder = 11
-    end
-    object ed_bairro_emp: TEdit
-      Left = 680
-      Top = 112
-      Width = 305
-      Height = 21
-      TabOrder = 12
-    end
-    object ed_logradouro_emp: TEdit
-      Left = 1064
-      Top = 112
-      Width = 353
-      Height = 21
-      TabOrder = 13
-    end
-    object ed_complemento_emp: TEdit
-      Left = 88
-      Top = 144
-      Width = 185
-      Height = 21
-      TabOrder = 14
-    end
-    object ed_num_endereco_emp: TEdit_numerico
-      Left = 736
-      Top = 144
-      Width = 113
-      Height = 21
-      TabOrder = 16
-      Text = '0'
+      TabOrder = 0
       id = 0
     end
-    object ed_tipo_emp: TEdit
-      Left = 952
+    object ed_id_pes: TEdit_numerico
+      Left = 248
+      Top = 16
+      Width = 89
+      Height = 21
+      TabOrder = 1
+      id = 0
+    end
+    object ed_id_loc: TEdit_numerico
+      Left = 96
+      Top = 48
+      Width = 89
+      Height = 21
+      TabOrder = 2
+      id = 0
+    end
+    object ed_id_eve: TEdit_numerico
+      Left = 248
+      Top = 48
+      Width = 89
+      Height = 21
+      TabOrder = 3
+      id = 0
+    end
+    object ed_etapa_ses: TEdit
+      Left = 96
+      Top = 80
+      Width = 241
+      Height = 21
+      TabOrder = 4
+    end
+    object dsp_inicio_ses: TDateTimePicker
+      Left = 96
+      Top = 112
+      Width = 129
+      Height = 21
+      Date = 45807.728880219910000000
+      Format = 'dd/MM/yyyy hh:mm:ss'
+      Time = 45807.728880219910000000
+      Kind = dtkTime
+      TabOrder = 5
+    end
+    object dsp_fim_ses: TDateTimePicker
+      Left = 96
       Top = 144
       Width = 129
       Height = 21
-      TabOrder = 17
+      Date = 45807.728880219910000000
+      Format = 'dd/MM/yyyy hh:mm:ss'
+      Time = 45807.728880219910000000
+      Kind = dtkTime
+      TabOrder = 6
     end
   end
   inherited il_hot_images: TImageList

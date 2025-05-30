@@ -14,6 +14,13 @@ drop domain dm_cpf;
 drop domain dm_capacidade;
 drop domain dm_etapa;
 
+drop trigger t_empresa_bi_autoin;
+drop trigger t_evento_bi_autoin;
+drop trigger t_local_bi_autoin;
+drop trigger t_pessoa_bi_autoin;
+drop trigger t_sessao_bi_autoin;
+drop trigger t_local_ai_capacidade_atual
+
 /*
     Domains
 */
@@ -84,7 +91,7 @@ bd_fundacao_emp dm_data,
 bd_tipo_emp varchar(50), -- Ex: MEI, LTDA
 bd_matriz_emp dm_boolean not null, -- 1 = true, 2 = false
 bd_ativa_emp dm_boolean not null,
-constraint pk_empresa primary key(bd_id_emp)
+constraint pk_t_empresa primary key(bd_id_emp)
 );
 
 Create table t_pessoa (
@@ -93,7 +100,7 @@ bd_nome_pes dm_nome,
 bd_email_pes dm_email not null,
 bd_cpf_pes dm_cpf not null,
 bd_id_emp integer,
-constraint pk_pessoa primary key (bd_id_pes),
+constraint pk_t_pessoa primary key (bd_id_pes),
 constraint fk_pessoa_empresa foreign key(bd_id_emp) references t_empresa(bd_id_emp)
 );
 
@@ -103,7 +110,7 @@ bd_nome_eve dm_nome, -- IA no mercado
 bd_desc_eve dm_nome, -- Palestra sobre ia com Stuart Little
 bd_inicio_eve dm_datetime not null,  -- 'yyyy/mm/dd hh:mm:ss'
 bd_fim_eve dm_datetime not null,
-constraint pk_evento primary key (bd_id_eve)
+constraint pk_t_evento primary key (bd_id_eve)
 );
 
 Create table t_local (
@@ -111,7 +118,7 @@ bd_id_loc integer,
 bd_nome_loc dm_nome not null, -- Sala 1
 bd_capacidade_max_loc dm_capacidade not null,
 bd_capacidade_atual_loc dm_capacidade,
-constraint pk_local primary key (bd_id_loc)
+constraint pk_t_local primary key (bd_id_loc)
 );
 
 Create table t_sessao(
@@ -122,7 +129,7 @@ bd_id_eve integer not null,
 bd_etapa_ses dm_etapa,    -- Ex: Primeira etapa/etapa 1, Primeiro intervalo/intervalo 1
 bd_inicio_ses dm_datetime not null,
 bd_fim_ses dm_datetime not null,
-constraint pk_sessao primary key(bd_id_ses),
+constraint pk_t_sessao primary key(bd_id_ses),
 constraint fk_sessao_pessoa foreign key(bd_id_pes) references t_pessoa(bd_id_pes),
 constraint fk_sessao_local foreign key(bd_id_loc) references t_local(bd_id_loc),
 constraint fk_sessao_evento foreign key(bd_id_eve) references t_evento(bd_id_eve)
@@ -139,7 +146,7 @@ begin
   if (coalesce(new.bd_id_loc, 0) <= 0) then
     select coalesce(max(bd_id_loc), 0) + 1 from t_local
     into new.bd_id_loc;
-end
+end;
 
 CREATE trigger t_pessoa_bi_autoin for t_pessoa
 active before insert position 0
@@ -148,7 +155,7 @@ begin
   if (coalesce(new.bd_id_pes, 0) <= 0) then
     select coalesce(max(bd_id_pes), 0) + 1 from t_pessoa
     into new.bd_id_pes;
-end
+end;
 
 CREATE trigger t_empresa_bi_autoin for t_empresa
 active before insert position 0
@@ -157,7 +164,7 @@ begin
   if (coalesce(new.bd_id_emp, 0) <= 0) then
     select coalesce(max(bd_id_emp), 0) + 1 from t_empresa
     into new.bd_id_emp;
-end
+end;
 
 CREATE trigger t_evento_bi_autoin for t_evento
 active before insert position 0
@@ -166,7 +173,7 @@ begin
   if (coalesce(new.bd_id_eve, 0) <= 0) then
     select coalesce(max(bd_id_eve), 0) + 1 from t_evento
     into new.bd_id_eve;
-end
+end;
 
 CREATE trigger t_sessao_bi_autoin for t_sessao
 active before insert position 0
@@ -175,7 +182,14 @@ begin
   if (coalesce(new.bd_id_ses, 0) <= 0) then
     select coalesce(max(bd_id_ses), 0) + 1 from t_sessao
     into new.bd_id_ses;
-end
+end;
+
+CREATE trigger t_local_ai_capacidade_atual for t_local
+active after insert position 0
+AS
+begin
+  update t_local set bd_capacidade_atual_loc = 0 where bd_id_loc = new.bd_id_loc;
+end;
 
 
 

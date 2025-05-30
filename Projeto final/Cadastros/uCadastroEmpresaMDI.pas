@@ -47,6 +47,7 @@ type
     ed_complemento_emp: TEdit;
     ed_num_endereco_emp: TEdit_numerico;
     ed_tipo_emp: TEdit;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -151,6 +152,13 @@ end;
 function TfrCadastroEmpresaMDI.setTabela: TClientDataSet;
 begin
   Result := dmTreinamento.cds_empresa;
+end;
+
+procedure TfrCadastroEmpresaMDI.FormShow(Sender: TObject);
+begin
+  inherited;
+  Height := 269;
+  Width := 1518;
 end;
 
 end.

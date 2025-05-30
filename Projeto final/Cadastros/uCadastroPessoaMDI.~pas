@@ -19,6 +19,7 @@ type
     ed_nome_pes: TEdit;
     ed_email_pes: TEdit;
     med_cpf_pes: TMaskEdit;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -80,6 +81,13 @@ end;
 function TfrCadastroPessoaMDI.setTabela: TClientDataSet;
 begin
   Result := dmTreinamento.cds_pessoa;
+end;
+
+procedure TfrCadastroPessoaMDI.FormShow(Sender: TObject);
+begin
+  inherited;
+  Height  := 241;
+  Width   := 274;
 end;
 
 end.
