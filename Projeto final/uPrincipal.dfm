@@ -1,8 +1,8 @@
 object frPrincipal: TfrPrincipal
-  Left = -8
-  Top = -8
-  Width = 1552
-  Height = 832
+  Left = -3
+  Top = 0
+  Width = 1547
+  Height = 829
   Align = alClient
   AutoSize = True
   Caption = 'Principal'
@@ -28,9 +28,11 @@ object frPrincipal: TfrPrincipal
       end
       object local: TMenuItem
         Caption = 'Local'
+        OnClick = localClick
       end
       object sessao: TMenuItem
         Caption = 'Sess'#227'o'
+        OnClick = sessaoClick
       end
       object empresa: TMenuItem
         Caption = 'Empresa'
@@ -38,6 +40,7 @@ object frPrincipal: TfrPrincipal
       end
       object evento: TMenuItem
         Caption = 'Evento'
+        OnClick = eventoClick
       end
     end
   end

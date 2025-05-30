@@ -9,8 +9,14 @@ uses
   uConsultaPadraoMDI in 'Consultas\uConsultaPadraoMDI.pas' {frConsultaPadraoMDI},
   uCadastroPessoaMDI in 'Cadastros\uCadastroPessoaMDI.pas' {frCadastroPessoaMDI},
   uConsultaPessoaMDI in 'Consultas\uConsultaPessoaMDI.pas' {frConsultaPessoaMDI},
-  uCadastroEmpresaMDI in 'uCadastroEmpresaMDI.pas' {frCadastroEmpresaMDI},
-  uConsultaEmpresaMDI in 'Consultas\uConsultaEmpresaMDI.pas' {frConsultaEmpresaMDI};
+  uCadastroEmpresaMDI in 'Cadastros\uCadastroEmpresaMDI.pas' {frCadastroEmpresaMDI},
+  uConsultaEmpresaMDI in 'Consultas\uConsultaEmpresaMDI.pas' {frConsultaEmpresaMDI},
+  uCadastroEventoMDI in 'Cadastros\uCadastroEventoMDI.pas' {frCadastroEventoMDI},
+  uConsultaEventoMDI in 'Consultas\uConsultaEventoMDI.pas' {frConsultaEventoMDI},
+  uCadastroLocalMDI in 'Cadastros\uCadastroLocalMDI.pas' {frCadastroLocalMDI},
+  uConsultaLocalMDI in 'Consultas\uConsultaLocalMDI.pas' {frConsultaLocalMDI},
+  uCadastroSessaoMDI in 'Cadastros\uCadastroSessaoMDI.pas' {frCadastroSessaoMDI},
+  uConsultaSessaoMDI in 'Consultas\uConsultaSessaoMDI.pas' {frConsultaSessaoMDI};
 
 {$R *.res}
 
@@ -18,5 +24,7 @@ begin
   Application.Initialize;
   Application.CreateForm(TdmTreinamento, dmTreinamento);
   Application.CreateForm(TfrPrincipal, frPrincipal);
+  Application.CreateForm(TfrCadastroSessaoMDI, frCadastroSessaoMDI);
+  Application.CreateForm(TfrConsultaSessaoMDI, frConsultaSessaoMDI);
   Application.Run;
 end.

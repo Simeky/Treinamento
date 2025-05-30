@@ -17,6 +17,9 @@ type
     evento: TMenuItem;
     procedure pessoaClick(Sender: TObject);
     procedure empresaClick(Sender: TObject);
+    procedure eventoClick(Sender: TObject);
+    procedure localClick(Sender: TObject);
+    procedure sessaoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,7 +31,8 @@ var
 
 implementation
 
-uses uCadastroPessoaMDI, uCadastroEmpresaMDI;
+uses uCadastroPessoaMDI, uCadastroEmpresaMDI, uCadastroEventoMDI,
+  uCadastroLocalMDI, uCadastroSessaoMDI;
 
 {$R *.dfm}
 
@@ -42,6 +46,21 @@ end;
 procedure TfrPrincipal.empresaClick(Sender: TObject);
 begin
   TfrCadastroEmpresaMDI.Create(self);
+end;
+
+procedure TfrPrincipal.eventoClick(Sender: TObject);
+begin
+  TfrCadastroEventoMDI.Create(Self);
+end;
+
+procedure TfrPrincipal.localClick(Sender: TObject);
+begin
+  TfrCadastroLocalMDI.Create(self);
+end;
+
+procedure TfrPrincipal.sessaoClick(Sender: TObject);
+begin
+ TfrCadastroSessaoMDI.Create(self);
 end;
 
 end.
