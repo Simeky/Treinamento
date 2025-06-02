@@ -17,8 +17,10 @@ type
     ed_id_eve: TEdit_numerico;
     ed_nome_eve: TEdit;
     ed_desc_eve: TEdit;
-    dtp_inicio_eve: TDateTimePicker;
-    dtp_fim_eve: TDateTimePicker;
+    dtp_inicio_eve_date: TDateTimePicker;
+    dtp_fim_eve_date: TDateTimePicker;
+    dtp_inicio_eve_time: TDateTimePicker;
+    dtp_fim_eve_time: TDateTimePicker;
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
@@ -46,11 +48,13 @@ uses udmTreinamento, uConsultaEventoMDI;
 procedure TfrCadastroEventoMDI.carregar;
 begin
   inherited;
-  ed_id_eve.Text      := tabela.FieldByName('bd_id_eve').AsString;
-  ed_nome_eve.Text    := tabela.FieldByName('bd_nome_eve').AsString;
-  ed_desc_eve.Text    := tabela.FieldByName('bd_desc_eve').AsString;
-  dtp_inicio_eve.Date := tabela.FieldByName('bd_inicio_eve').AsDateTime;
-  dtp_fim_eve.Date    := tabela.FieldByName('bd_fim_eve').AsDateTime;
+  ed_id_eve.Text            := tabela.FieldByName('bd_id_eve').AsString;
+  ed_nome_eve.Text          := tabela.FieldByName('bd_nome_eve').AsString;
+  ed_desc_eve.Text          := tabela.FieldByName('bd_desc_eve').AsString;
+  dtp_inicio_eve_date.Date  := tabela.FieldByName('bd_inicio_eve').AsDateTime;
+  dtp_inicio_eve_time.Time  := tabela.FieldByName('bd_inicio_eve').AsDateTime;
+  dtp_fim_eve_date.Date     := tabela.FieldByName('bd_fim_eve').AsDateTime;
+  dtp_fim_eve_time.Time     := tabela.FieldByName('bd_fim_eve').AsDateTime;
 end;
 
 function TfrCadastroEventoMDI.consultar: TForm;
@@ -64,8 +68,8 @@ begin
   tabela.FieldByName('bd_id_eve').AsInteger       := StrToIntDef(ed_id_eve.Text, 0);
   tabela.FieldByName('bd_nome_eve').AsString      := ed_nome_eve.Text;
   tabela.FieldByName('bd_desc_eve').AsString      := ed_desc_eve.Text;
-  tabela.FieldByName('bd_inicio_eve').AsDateTime  := dtp_inicio_eve.DateTime;
-  tabela.FieldByName('bd_fim_eve').AsDateTime     := dtp_fim_eve.DateTime;
+  tabela.FieldByName('bd_inicio_eve').AsDateTime  := dtp_inicio_eve_date.Date + dtp_inicio_eve_time.Time;
+  tabela.FieldByName('bd_fim_eve').AsDateTime     := dtp_fim_eve_date.Date + dtp_fim_eve_time.Time;
 end;
 
 function TfrCadastroEventoMDI.setEdit_id: TEdit;
@@ -86,7 +90,7 @@ end;
 procedure TfrCadastroEventoMDI.FormShow(Sender: TObject);
 begin
   inherited;
-  Height := 210;
+  Height := 230;
   Width := 498;
 end;
 

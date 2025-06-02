@@ -1,4 +1,6 @@
 inherited frConsultaPessoaMDI: TfrConsultaPessoaMDI
+  Left = 262
+  Top = 244
   Caption = 'Consulta Pessoa'
   PixelsPerInch = 96
   TextHeight = 13

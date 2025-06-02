@@ -181,7 +181,7 @@ begin
       f_tabela.ApplyUpdates(0);
       f_tabela.Refresh;
 
-      MessageDlg('Registro excluído com sucesso', mtInformation, [mbOK], 0);
+      ShowMessage('Registro Excluído com sucesso.');
 
       if f_edit_id.CanFocus then
         f_edit_id.SetFocus;

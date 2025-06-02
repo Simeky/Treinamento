@@ -61,6 +61,13 @@ end;
 procedure TfrCadastroPessoaMDI.salvar;
 begin
   inherited;
+
+  if Trim(ed_email_pes.Text) = '' then
+  begin
+    ShowMessage('O E-mail deve ser preenchido.');
+    Abort;
+  end;
+
   tabela.FieldByName('bd_id_pes').AsInteger   := StrToIntDef(ed_id_pes.Text, 0);
   tabela.FieldByName('bd_nome_pes').AsString  := ed_nome_pes.Text;
   tabela.FieldByName('bd_email_pes').AsString := ed_email_pes.Text;

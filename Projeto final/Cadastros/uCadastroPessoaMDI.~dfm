@@ -1,6 +1,6 @@
 inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
-  Left = 615
-  Top = 237
+  Left = 696
+  Top = 253
   Width = 274
   Height = 241
   Caption = 'Cadastro Pessoa'

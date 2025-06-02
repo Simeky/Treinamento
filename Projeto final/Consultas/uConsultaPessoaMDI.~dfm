@@ -3,6 +3,7 @@ inherited frConsultaPessoaMDI: TfrConsultaPessoaMDI
   PixelsPerInch = 96
   TextHeight = 13
   inherited gr_consulta: TDBGrid
+    ParentBiDiMode = False
     Columns = <
       item
         Expanded = False
