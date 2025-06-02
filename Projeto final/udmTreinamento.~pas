@@ -24,6 +24,9 @@ type
     t_evento: TSQLTable;
     dsp_evento: TDataSetProvider;
     cds_evento: TClientDataSet;
+    qSelect: TSQLQuery;
+    dsp_local_pessoa: TDataSetProvider;
+    cds_local_pessoa: TClientDataSet;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

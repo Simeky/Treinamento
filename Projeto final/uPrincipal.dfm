@@ -43,5 +43,16 @@ object frPrincipal: TfrPrincipal
         OnClick = eventoClick
       end
     end
+    object Consultas1: TMenuItem
+      Caption = 'Consultas'
+      object Pessoaporlocal1: TMenuItem
+        Caption = 'Pessoa por local'
+        OnClick = Pessoaporlocal1Click
+      end
+      object SalaporPessoa1: TMenuItem
+        Caption = 'Sala por Pessoa'
+        OnClick = SalaporPessoa1Click
+      end
+    end
   end
 end

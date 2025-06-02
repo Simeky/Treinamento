@@ -1,10 +1,10 @@
 object dmTreinamento: TdmTreinamento
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 758
-  Top = 238
-  Height = 297
-  Width = 423
+  Left = 544
+  Top = 237
+  Height = 293
+  Width = 596
   object SQLConnection: TSQLConnection
     ConnectionName = 'DB2Connection'
     DriverName = 'DB2'
@@ -20,7 +20,7 @@ object dmTreinamento: TdmTreinamento
       'LocaleCode=0000'
       'DB2 TransIsolation=ReadCommited')
     VendorLib = 'db2cli.dll'
-    Left = 192
+    Left = 272
     Top = 16
   end
   object t_pessoa: TSQLTable
@@ -116,6 +116,37 @@ object dmTreinamento: TdmTreinamento
     Params = <>
     ProviderName = 'dsp_evento'
     Left = 352
+    Top = 192
+  end
+  object qSelect: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConnection
+    Left = 432
+    Top = 72
+  end
+  object dsp_local_pessoa: TDataSetProvider
+    DataSet = qSelect
+    Left = 432
+    Top = 136
+  end
+  object cds_local_pessoa: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsp_local_pessoa'
+    Left = 432
+    Top = 192
+  end
+  object dsp_pessoa_local: TDataSetProvider
+    DataSet = qSelect
+    Left = 520
+    Top = 136
+  end
+  object cds_pessoa_local: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsp_pessoa_local'
+    Left = 520
     Top = 192
   end
 end

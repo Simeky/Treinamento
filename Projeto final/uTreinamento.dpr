@@ -16,7 +16,10 @@ uses
   uCadastroLocalMDI in 'Cadastros\uCadastroLocalMDI.pas' {frCadastroLocalMDI},
   uConsultaLocalMDI in 'Consultas\uConsultaLocalMDI.pas' {frConsultaLocalMDI},
   uCadastroSessaoMDI in 'Cadastros\uCadastroSessaoMDI.pas' {frCadastroSessaoMDI},
-  uConsultaSessaoMDI in 'Consultas\uConsultaSessaoMDI.pas' {frConsultaSessaoMDI};
+  uConsultaSessaoMDI in 'Consultas\uConsultaSessaoMDI.pas' {frConsultaSessaoMDI},
+  uConsultaLocalPessoaMDI in 'Consultas\uConsultaLocalPessoaMDI.pas' {frConsultaLocalPessoaMDI},
+  uConsultaPessoaLocalMDI in 'Consultas\uConsultaPessoaLocalMDI.pas' {frConsultaPessoaLocalMDI},
+  uUtils in 'uUtils.pas';
 
 {$R *.res}
 
@@ -24,7 +27,5 @@ begin
   Application.Initialize;
   Application.CreateForm(TdmTreinamento, dmTreinamento);
   Application.CreateForm(TfrPrincipal, frPrincipal);
-  Application.CreateForm(TfrCadastroSessaoMDI, frCadastroSessaoMDI);
-  Application.CreateForm(TfrConsultaSessaoMDI, frConsultaSessaoMDI);
   Application.Run;
 end.

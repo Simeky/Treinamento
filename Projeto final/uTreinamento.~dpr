@@ -11,7 +11,14 @@ uses
   uConsultaPessoaMDI in 'Consultas\uConsultaPessoaMDI.pas' {frConsultaPessoaMDI},
   uCadastroEmpresaMDI in 'Cadastros\uCadastroEmpresaMDI.pas' {frCadastroEmpresaMDI},
   uConsultaEmpresaMDI in 'Consultas\uConsultaEmpresaMDI.pas' {frConsultaEmpresaMDI},
-  uCadastroEventoMDI in 'Cadastros\uCadastroEventoMDI.pas' {frCadastroEventoMDI};
+  uCadastroEventoMDI in 'Cadastros\uCadastroEventoMDI.pas' {frCadastroEventoMDI},
+  uConsultaEventoMDI in 'Consultas\uConsultaEventoMDI.pas' {frConsultaEventoMDI},
+  uCadastroLocalMDI in 'Cadastros\uCadastroLocalMDI.pas' {frCadastroLocalMDI},
+  uConsultaLocalMDI in 'Consultas\uConsultaLocalMDI.pas' {frConsultaLocalMDI},
+  uCadastroSessaoMDI in 'Cadastros\uCadastroSessaoMDI.pas' {frCadastroSessaoMDI},
+  uConsultaSessaoMDI in 'Consultas\uConsultaSessaoMDI.pas' {frConsultaSessaoMDI},
+  uConsultaLocalPessoaMDI in 'Consultas\uConsultaLocalPessoaMDI.pas' {frConsultaLocalPessoaMDI},
+  uConsultaPessoaLocalMDI in 'Consultas\uConsultaPessoaLocalMDI.pas' {frConsultaPessoaLocalMDI};
 
 {$R *.res}
 
