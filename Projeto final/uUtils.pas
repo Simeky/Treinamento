@@ -3,6 +3,7 @@ unit uUtils;
 interface
   function so_numeros(numero_texto: String): String;
   function validar_cpf(cpf: String): Boolean;
+  function validar_cnpj(cnpj: String): Boolean;
 
 implementation
 uses SysUtils;
@@ -21,45 +22,93 @@ end;
 
 function validar_cpf(cpf: string): Boolean;
 var
-  wcpf_n_formatado: string;
-  wdig10, wdig11: Char;
-  wsm, wr: Integer;
+  wcpfNumeros: string;
+  wdigito10, wdigito11: Char;
+  wsoma, wresto: Integer;
   i: Byte;
 begin
-  wcpf_n_formatado := so_numeros(cpf);
-  wdig10 := #0;
-  wdig11 := #0;
-  wsm := 0;
-  wr := 0;
+  Result := False;
+  wcpfNumeros := so_numeros(cpf);
 
-  if Length(wcpf_n_formatado) <> 11 then
+  if Length(wcpfNumeros) <> 11 then
     Exit;
 
-  if (Length(wcpf_n_formatado) > 0) and
-     (StringOfChar(wcpf_n_formatado[1], Length(wcpf_n_formatado)) = wcpf_n_formatado) then
+  //Evita CPFs com um único tipo de digito.
+  if StringOfChar(wcpfNumeros[1], 11) = wcpfNumeros then 
     Exit;
 
-  { Calcula primeiro digito }
-  wsm := 0;
+  //Primeiro dígito verificador
+  wsoma := 0;
   for i := 0 to 8 do
-    wsm := wsm + (Ord(wcpf_n_formatado[i+1]) - Ord('0')) * (10 - i);
-  
-  wr := 11 - (wsm mod 11);
-  if wr = 10 or wr = 11 then
-    wdig10 := '0'
+    wsoma := wsoma + (Ord(wcpfNumeros[i + 1]) - Ord('0')) * (10 - i);
+
+  wresto := 11 - (wsoma mod 11);
+  if wresto >= 10 then
+    wdigito10 := '0'
   else
-    wdig10 := char(wr + 48);
+    wdigito10 := Char(wresto + Ord('0'));
 
-  { Calcula segundo digito }
-  wsm := 0;
+  //Segundo dígito verificador
+  wsoma := 0;
   for i := 0 to 9 do
-    wsm := wsm + (Ord(wcpf_n_formatado[i+1]) - Ord('0')) * (11 - i);
-  
-  wr := 11 - (wsm mod 11);
-  wdig11 := Char(wr in [10, 11] and Ord('0') or wr + Ord('0'));
+    wsoma := wsoma + (Ord(wcpfNumeros[i + 1]) - Ord('0')) * (11 - i);
 
-  Result := (wdig10 = wcpf_n_formatado[10]) and (wdig11 = wcpf_n_formatado[11]);
+  wresto := 11 - (wsoma mod 11);
+  if wresto >= 10 then
+    wdigito11 := '0'
+  else
+    wdigito11 := Char(wresto + Ord('0'));
+
+  Result := (wdigito10 = wcpfNumeros[10]) and (wdigito11 = wcpfNumeros[11]);
 end;
+
+//------------//------------//
+
+function validar_cnpf(cnpj: string): Boolean;
+var
+  wpeso1: array[1..12] of Integer = (5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2);
+  wpeso2: array[1..13] of Integer = (6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2);
+  wcnpjNumeros: string;
+  wdigito13, wdigito14: Char;
+  wsoma, wresto: Integer;
+  i: Integer;
+begin
+  Result := False;
+  wcnpjNumeros := so_numeros(cnpj);
+
+  if Length(wcnpjNumeros) <> 14 then
+    Exit;
+
+  //Evita CNPJs com um único tipo de digito.
+  if StringOfChar(wcnpjNumeros[1], 14) = wcnpjNumeros then
+    Exit;
+
+  //Cálculo do 13º dígito (primeiro verificador)
+  wsoma := 0;
+  for i := 1 to 12 do
+    wsoma := wsoma + (Ord(wcnpjNumeros[i]) - Ord('0')) * wpeso1[i];
+
+  wresto := wsoma mod 11;
+  if wresto < 2 then
+    wdigito13 := '0'
+  else
+    wdigito13 := Char((11 - wresto) + Ord('0'));
+
+  //Cálculo do 14º dígito (segundo verificador)
+  wsoma := 0;
+  for i := 1 to 13 do
+    wsoma := wsoma + (Ord(wcnpjNumeros[i]) - Ord('0')) * wpeso2[i];
+
+  wresto := wsoma mod 11;
+  if wresto < 2 then
+    wdigito14 := '0'
+  else
+    wdigito14 := Char((11 - wresto) + Ord('0'));
+
+  Result := (wdigito13 = wcnpjNumeros[13]) and (wdigito14 = wcnpjNumeros[14]);
+end;
+
+
 
 
 end.
