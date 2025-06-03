@@ -58,6 +58,8 @@ type
     procedure salvar; override;
     function consultar: TForm; override;
     procedure carregar; override;
+    function validar: Boolean; override;
+     
   end;
 
 var
@@ -65,7 +67,7 @@ var
 
 implementation
 
-uses uConsultaEmpresaMDI, udmTreinamento;
+uses uConsultaEmpresaMDI, udmTreinamento, uUtils;
 
 {$R *.dfm}
 
@@ -96,6 +98,7 @@ begin
     ckb_matriz_emp.Checked        := True
   else
     ckb_matriz_emp.Checked        := False;
+
   if tabela.FieldByName('bd_ativa_emp').AsInteger = 1 then
     ckb_ativa_emp.Checked         := True
   else
@@ -120,7 +123,7 @@ begin
   tabela.FieldByName('bd_telefone_emp').AsString            := med_telefone_emp.Text;
   tabela.FieldByName('bd_email_emp').AsString               := ed_email_emp.Text;
   tabela.FieldByName('bd_cep_emp').AsString                 := med_cep_emp.Text;
-  tabela.FieldByName('bd_uf_emp').AsString                  := med_uf_emp.Text;
+  tabela.FieldByName('bd_uf_emp').AsString                  := UpperCase(med_uf_emp.Text);
   tabela.FieldByName('bd_cidade_emp').AsString              := ed_cidade_emp.Text;
   tabela.FieldByName('bd_bairro_emp').AsString              := ed_bairro_emp.Text;
   tabela.FieldByName('bd_logradouro_emp').AsString          := ed_logradouro_emp.Text;
@@ -133,6 +136,7 @@ begin
     tabela.FieldByName('bd_matriz_emp').AsInteger           := 1
   else
     tabela.FieldByName('bd_matriz_emp').AsInteger           := 0;
+
   if ckb_ativa_emp.Checked then
     tabela.FieldByName('bd_ativa_emp').AsInteger            := 1
   else
@@ -158,7 +162,70 @@ procedure TfrCadastroEmpresaMDI.FormShow(Sender: TObject);
 begin
   inherited;
   Height := 269;
-  Width := 1518;
+  Width := 1542;
+end;
+
+function TfrCadastroEmpresaMDI.validar: Boolean;
+begin
+
+  if not validar_cnpj(med_cnpj_emp.Text) then
+  begin
+    ShowMessage('Insira um CNPJ Válido.');
+    Result := False;
+    Exit;
+  end;
+
+  if Trim(so_numeros(med_cep_emp.Text)) = '' then
+  begin
+    ShowMessage('O CEP deve ser Preenchido.');
+    Result := False;
+    Exit;
+  end;
+
+  if Trim(ed_inscricao_estadual_emp.Text) = '' then
+  begin
+    ShowMessage('A Inscrição Estadual deve ser Preenchida.');
+    Result := False;
+    Exit;
+  end;
+
+  if Trim(ed_inscricao_municipal_emp.Text) = '' then
+  begin
+    ShowMessage('A Inscrição Municipal deve ser Preenchido.');
+    Result := False;
+    Exit;
+  end;
+
+  if Trim(ed_razao_social_emp.Text) = '' then
+  begin
+    ShowMessage('A Razão Social deve ser Preenchida.');
+    Result := False;
+    Exit;
+  end;
+
+  if not validar_email(ed_email_emp.Text) then
+  begin
+    ShowMessage('O E-mail deve conter @ e .');
+    Result := False;
+    Exit;
+  end;
+
+  if Trim(med_uf_emp.Text) = '' then
+  begin
+    ShowMessage('A UF deve ser Preenchida.');
+    Result := False;
+    Exit;
+  end;
+
+  if Trim(ed_num_endereco_emp.Text) = '' then
+  begin
+    ShowMessage('O Número de Endereço deve ser Preenchido.');
+    Result := False;
+    Exit;
+  end;
+
+  ShowMessage('Empresa Cadastrada com Sucesso.');
+  Result := true;
 end;
 
 end.

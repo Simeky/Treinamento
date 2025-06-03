@@ -20,11 +20,11 @@ type
     ed_id_pes: TEdit_numerico;
     ed_id_loc: TEdit_numerico;
     ed_id_eve: TEdit_numerico;
-    ed_etapa_ses: TEdit;
     dtp_inicio_ses_date: TDateTimePicker;
     dtp_fim_ses_date: TDateTimePicker;
     dtp_inicio_ses_time: TDateTimePicker;
     dtp_fim_ses_time: TDateTimePicker;
+    cb_etapa_ses: TComboBox;
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
@@ -36,6 +36,8 @@ type
     procedure salvar; override;
     function consultar: TForm; override;
     procedure carregar; override;
+    function validar: Boolean; override;
+    
   end;
 
 var
@@ -54,7 +56,7 @@ begin
   ed_id_pes.Text            := tabela.FieldByName('bd_id_pes').AsString;
   ed_id_loc.Text            := tabela.FieldByName('bd_id_loc').AsString;
   ed_id_eve.Text            := tabela.FieldByName('bd_id_eve').AsString;
-  ed_etapa_ses.Text         := tabela.FieldByName('bd_etapa_ses').AsString;
+  cb_etapa_ses.Text         := tabela.FieldByName('bd_etapa_ses').AsString;
   dtp_inicio_ses_date.Date  := tabela.FieldByName('bd_inicio_ses').AsDateTime;
   dtp_inicio_ses_time.Time  := tabela.FieldByName('bd_inicio_ses').AsDateTime;
   dtp_fim_ses_date.Date     := tabela.FieldByName('bd_fim_ses').AsDateTime;
@@ -80,18 +82,11 @@ begin
   tabela.FieldByName('bd_id_pes').AsInteger       := StrToIntDef(ed_id_pes.Text, 0);
   tabela.FieldByName('bd_id_loc').AsInteger       := StrToIntDef(ed_id_loc.Text, 0);
   tabela.FieldByName('bd_id_eve').AsInteger       := StrToIntDef(ed_id_eve.Text, 0);
-  tabela.FieldByName('bd_etapa_ses').AsString     := ed_etapa_ses.Text;
+  tabela.FieldByName('bd_etapa_ses').AsString     := cb_etapa_ses.Text;
   tabela.FieldByName('bd_inicio_ses').AsDateTime  := dtp_inicio_ses_date.Date + dtp_inicio_ses_time.Time;
   tabela.FieldByName('bd_fim_ses').AsDateTime     := dtp_fim_ses_date.Date + dtp_fim_ses_time.Time;
 
-  dmTreinamento.cds_local.Open;
-  if  dmTreinamento.cds_local.FieldByName('bd_capacidade_atual_loc').AsInteger >=
-      dmTreinamento.cds_local.FieldByName('bd_capacidade_max_loc').AsInteger then
-  begin
-    ShowMessage('Não foi possível inserir o registro pois excede a capacidade máxima do local.');
-    Abort;
-  end;
-  dmTreinamento.cds_local.Close;
+
 end;
 
 function TfrCadastroSessaoMDI.setEdit_id: TEdit;
@@ -107,6 +102,43 @@ end;
 function TfrCadastroSessaoMDI.setTabela: TClientDataSet;
 begin
   Result := dmTreinamento.cds_sessao;
+end;
+
+function TfrCadastroSessaoMDI.validar: Boolean;
+begin
+  dmTreinamento.cds_local.Open;
+  if  dmTreinamento.cds_local.FieldByName('bd_capacidade_atual_loc').AsInteger >=
+      dmTreinamento.cds_local.FieldByName('bd_capacidade_max_loc').AsInteger then
+  begin
+    ShowMessage('Não foi Possível Inserir o Registro pois Excede a Capacidade Máxima do Local escolhido.');
+    Result := false;
+    dmTreinamento.cds_local.Close;
+    Exit;
+  end;
+  dmTreinamento.cds_local.Close;
+
+  dmTreinamento.cds_evento.Open;
+  if dmTreinamento.cds_evento.FieldByName('bd_inicio_eve').AsDateTime <
+     StrToDateTime(DateToStr(dtp_inicio_ses_date.Date) + ' ' + TimeToStr(dtp_inicio_ses_time.Time)) then
+  begin
+    ShowMessage('O Início da Sessão não pode ser antes do Início do Evento.');
+    Result := false;
+    dmTreinamento.cds_evento.Close;
+    Exit;
+  end;
+
+  if StrToDateTime(DateToStr(dtp_fim_ses_date.Date) + ' ' + TimeToStr(dtp_fim_ses_time.Time)) <=
+     StrToDateTime(DateToStr(dtp_inicio_ses_date.Date) + ' ' + TimeToStr(dtp_inicio_ses_time.Time)) then
+  begin
+    ShowMessage('O Fim da Sessão não pode ser antes ou igual ao Início do Sessão.');
+    Result := false;
+    dmTreinamento.cds_evento.Close;
+    Exit;
+  end;
+  dmTreinamento.cds_evento.Close;
+
+  ShowMessage('Sessão Cadastrada com Sucesso.');
+  Result := True;
 end;
 
 end.

@@ -1,6 +1,6 @@
 inherited frCadastroPadraoMDI: TfrCadastroPadraoMDI
-  Left = 241
-  Top = 226
+  Left = 272
+  Top = 183
   Height = 299
   Caption = 'frCadastroPadraoMDI'
   OldCreateOrder = True

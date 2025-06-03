@@ -1,8 +1,15 @@
 inherited frConsultaEmpresaMDI: TfrConsultaEmpresaMDI
-  Caption = 'Consulta Empresas'
+  Left = -7
+  Top = 95
+  Width = 1542
+  Caption = 'Consulta de Empresas Cadastradas'
   PixelsPerInch = 96
   TextHeight = 13
+  inherited tb_ferramentas: TToolBar
+    Width = 1526
+  end
   inherited gr_consulta: TDBGrid
+    Width = 1526
     Columns = <
       item
         Expanded = False
@@ -70,7 +77,7 @@ inherited frConsultaEmpresaMDI: TfrConsultaEmpresaMDI
         Expanded = False
         FieldName = 'bd_uf_emp'
         Title.Caption = 'UF'
-        Width = 25
+        Width = 22
         Visible = True
       end
       item
@@ -105,14 +112,14 @@ inherited frConsultaEmpresaMDI: TfrConsultaEmpresaMDI
         Expanded = False
         FieldName = 'bd_complemento_emp'
         Title.Caption = 'Complemento'
-        Width = 71
+        Width = 75
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'bd_site_emp'
         Title.Caption = 'Site'
-        Width = 111
+        Width = 102
         Visible = True
       end
       item

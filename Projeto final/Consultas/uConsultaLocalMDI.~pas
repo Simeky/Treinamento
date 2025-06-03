@@ -26,4 +26,16 @@ uses udmTreinamento;
 
 {$R *.dfm}
 
+{ TfrConsultaLocalMDI }
+
+function TfrConsultaLocalMDI.setChave: String;
+begin
+  Result := 'bd_id_loc';
+end;
+
+function TfrConsultaLocalMDI.setTabela: TClientDataSet;
+begin
+  Result := dmTreinamento.cds_local;
+end;
+
 end.

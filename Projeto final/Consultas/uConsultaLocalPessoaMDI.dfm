@@ -1,7 +1,7 @@
 inherited frConsultaLocalPessoaMDI: TfrConsultaLocalPessoaMDI
-  Left = 371
-  Top = 258
-  Caption = 'Consulta de Pessoa '
+  Left = 293
+  Top = 224
+  Caption = 'Consulta de Locais onde a Pessoa ficara '
   PixelsPerInch = 96
   TextHeight = 13
   inherited gr_consulta: TDBGrid [0]

@@ -26,6 +26,7 @@ type
     procedure salvar; override;
     function consultar: TForm; override;
     procedure carregar; override;
+    function validar: Boolean; override;
   end;
 
 var
@@ -60,8 +61,8 @@ end;
 procedure TfrCadastroLocalMDI.salvar;
 begin
   inherited;
-  tabela.FieldByName('bd_id_loc').AsInteger       := StrToIntDef(ed_id_loc.Text, 0);
-  tabela.FieldByName('bd_nome_loc').AsString      := ed_nome_loc.Text;
+  tabela.FieldByName('bd_id_loc').AsInteger             := StrToIntDef(ed_id_loc.Text, 0);
+  tabela.FieldByName('bd_nome_loc').AsString            := ed_nome_loc.Text;
   tabela.FieldByName('bd_capacidade_max_loc').AsString  := ed_capacidade_max_loc.Text;
 end;
 
@@ -78,6 +79,27 @@ end;
 function TfrCadastroLocalMDI.setTabela: TClientDataSet;
 begin
   Result := dmTreinamento.cds_local;
+end;
+
+function TfrCadastroLocalMDI.validar: Boolean;
+begin
+
+  if Trim(ed_nome_loc.Text) = '' then
+  begin
+    ShowMessage('O Nome do Local deve ser Preenchido.');
+    Result := False;
+    Exit;
+  end;
+
+  if StrToIntDef(ed_capacidade_max_loc.Text, 0) <= 0 then
+  begin
+    ShowMessage('A Capacidade Máxima PRECISA ser maior do que 0.');
+    Result := false;
+    Exit;
+  end;
+
+  ShowMessage('Local Cadastrado com Sucesso.');
+  Result := true;
 end;
 
 end.

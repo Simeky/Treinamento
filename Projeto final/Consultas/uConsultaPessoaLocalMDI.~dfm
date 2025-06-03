@@ -1,6 +1,6 @@
 inherited frConsultaPessoaLocalMDI: TfrConsultaPessoaLocalMDI
-  Left = 407
-  Top = 209
+  Left = 302
+  Top = 226
   Caption = 'Consulta de Pessoas em um Local'
   PixelsPerInch = 96
   TextHeight = 13
@@ -68,7 +68,7 @@ inherited frConsultaPessoaLocalMDI: TfrConsultaPessoaLocalMDI
     Width = 121
     Height = 21
     TabOrder = 2
-    Text = 'Digite o ID do Local'
+    Text = '0'
     id = 0
   end
   inherited il_images: TImageList
@@ -83,7 +83,6 @@ inherited frConsultaPessoaLocalMDI: TfrConsultaPessoaLocalMDI
     Top = 16
   end
   inherited ds_consulta: TDataSource
-    DataSet = dmTreinamento.cds_pessoa_local
     Left = 448
     Top = 16
   end

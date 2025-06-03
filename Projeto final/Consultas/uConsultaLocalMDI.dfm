@@ -1,7 +1,7 @@
 inherited frConsultaLocalMDI: TfrConsultaLocalMDI
   Left = 302
   Top = 204
-  Caption = 'Consulta Local'
+  Caption = 'Consulta de Locais Cadastrados'
   PixelsPerInch = 96
   TextHeight = 13
   inherited gr_consulta: TDBGrid
@@ -34,7 +34,20 @@ inherited frConsultaLocalMDI: TfrConsultaLocalMDI
         Visible = True
       end>
   end
+  inherited il_images: TImageList
+    Left = 480
+    Top = 16
+  end
+  inherited il_hot_images: TImageList
+    Left = 512
+    Top = 16
+  end
+  inherited il_disable_images: TImageList
+    Top = 16
+  end
   inherited ds_consulta: TDataSource
     DataSet = dmTreinamento.cds_local
+    Left = 448
+    Top = 16
   end
 end

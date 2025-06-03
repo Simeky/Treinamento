@@ -30,6 +30,8 @@ type
     procedure salvar; override;
     function consultar: TForm; override;
     procedure carregar; override;
+    function validar: Boolean; override;
+    
   end;
 
 var
@@ -37,7 +39,7 @@ var
 
 implementation
 
-uses udmTreinamento, uConsultaPessoaMDI;
+uses udmTreinamento, uConsultaPessoaMDI, uUtils;
 
 {$R *.dfm}
 
@@ -62,23 +64,12 @@ procedure TfrCadastroPessoaMDI.salvar;
 begin
   inherited;
 
-  if Trim(ed_email_pes.Text) = '' then
-  begin
-    ShowMessage('O E-mail deve ser preenchido.');
-    Abort;
-  end;
-
-  if Trim(med_cpf_pes.Text) = '' then
-  begin
-    ShowMessage('O CPF deve ser preenchido.');
-    Abort;
-  end;
-
   tabela.FieldByName('bd_id_pes').AsInteger   := StrToIntDef(ed_id_pes.Text, 0);
   tabela.FieldByName('bd_nome_pes').AsString  := ed_nome_pes.Text;
   tabela.FieldByName('bd_email_pes').AsString := ed_email_pes.Text;
   tabela.FieldByName('bd_cpf_pes').AsString   := med_cpf_pes.Text;
   tabela.FieldByName('bd_id_emp').AsInteger   := StrToIntDef(ed_id_afi.Text, 0);
+
 end;
 
 function TfrCadastroPessoaMDI.setEdit_id: TEdit;
@@ -101,6 +92,26 @@ begin
   inherited;
   Height  := 241;
   Width   := 274;
+end;
+
+function TfrCadastroPessoaMDI.validar: Boolean;
+begin
+  if not validar_email(ed_email_pes.Text) then
+  begin
+    ShowMessage('O E-mail deve conter @ e .');
+    Result := False;
+    Exit;
+  end;
+
+  if not validar_cpf(med_cpf_pes.Text) then
+  begin
+    ShowMessage('Insira um CPF válido.');
+    Result := False;
+    Exit;
+  end;
+
+  ShowMessage('Pessoa cadastrada com sucesso.');
+  Result := True;
 end;
 
 end.

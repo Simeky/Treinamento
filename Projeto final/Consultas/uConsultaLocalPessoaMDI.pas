@@ -63,8 +63,8 @@ begin
     'loc.bd_nome_loc, ' +
     'ses.bd_inicio_ses, ' +
     'ses.bd_fim_ses ' +
-  'From t_pessoa pes ' +
-  'Join t_sessao ses on ses.bd_id_pes = pes.bd_id_pes ' +
+  'From t_sessao ses ' +
+  'Join t_pessoa pes on ses.bd_id_pes = pes.bd_id_pes ' +
   'Join t_local loc on loc.bd_id_loc = ses.bd_id_loc ' +
   'Join t_evento eve on eve.bd_id_eve = ses.bd_id_eve ' +
   'Where pes.bd_id_pes = :bd_id_pes');
@@ -74,7 +74,7 @@ begin
   ds_consulta.DataSet := dmTreinamento.cds_local_pessoa;
 
   if dmTreinamento.cds_local_pessoa.IsEmpty then
-    ShowMessage('O código informado não foi cadastrado ou não existe!');
+    ShowMessage('O ID da Pessoa Informado não foi Cadastrado ou Não Existe!');
 end;
 
 end.

@@ -1,9 +1,9 @@
 inherited frCadastroEventoMDI: TfrCadastroEventoMDI
-  Left = 483
-  Top = 207
+  Left = 589
+  Top = 330
   Width = 498
   Height = 230
-  Caption = 'Cadastro Evento'
+  Caption = 'Cadastro de Eventos'
   Constraints.MaxHeight = 230
   Constraints.MaxWidth = 498
   Constraints.MinHeight = 230
@@ -75,26 +75,6 @@ inherited frCadastroEventoMDI: TfrCadastroEventoMDI
       Height = 21
       TabOrder = 2
     end
-    object dtp_inicio_eve_date: TDateTimePicker
-      Left = 88
-      Top = 80
-      Width = 169
-      Height = 21
-      Date = 45807.000000000000000000
-      Format = 'dd/MM/yyyy'
-      Time = 45807.000000000000000000
-      TabOrder = 3
-    end
-    object dtp_fim_eve_date: TDateTimePicker
-      Left = 88
-      Top = 112
-      Width = 169
-      Height = 21
-      Date = 45807.000000000000000000
-      Format = 'dd/MM/yyyy'
-      Time = 45807.000000000000000000
-      TabOrder = 5
-    end
     object dtp_inicio_eve_time: TDateTimePicker
       Left = 272
       Top = 80
@@ -114,6 +94,24 @@ inherited frCadastroEventoMDI: TfrCadastroEventoMDI
       Time = 45810.695435868050000000
       Kind = dtkTime
       TabOrder = 6
+    end
+    object dtp_inicio_eve_date: TDateTimePicker
+      Left = 88
+      Top = 80
+      Width = 169
+      Height = 21
+      Date = 45811.717974583330000000
+      Time = 45811.717974583330000000
+      TabOrder = 3
+    end
+    object dtp_fim_eve_date: TDateTimePicker
+      Left = 88
+      Top = 112
+      Width = 169
+      Height = 21
+      Date = 45811.718733634260000000
+      Time = 45811.718733634260000000
+      TabOrder = 5
     end
   end
 end

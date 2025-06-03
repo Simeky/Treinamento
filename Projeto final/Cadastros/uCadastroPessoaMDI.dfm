@@ -1,9 +1,9 @@
 inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
-  Left = 919
-  Top = 246
+  Left = 774
+  Top = 172
   Width = 274
   Height = 241
-  Caption = 'Cadastro Pessoa'
+  Caption = 'Cadastro de Pessoas'
   Constraints.MaxHeight = 241
   Constraints.MaxWidth = 274
   Constraints.MinHeight = 241

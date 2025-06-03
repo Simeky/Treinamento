@@ -1,7 +1,7 @@
 inherited frConsultaSessaoMDI: TfrConsultaSessaoMDI
   Left = 334
   Top = 163
-  Caption = 'Consulta Sess'#227'o'
+  Caption = 'Consulta de Sess'#245'es Cadastradas'
   PixelsPerInch = 96
   TextHeight = 13
   inherited gr_consulta: TDBGrid

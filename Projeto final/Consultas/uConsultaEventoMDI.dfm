@@ -1,7 +1,7 @@
 inherited frConsultaEventoMDI: TfrConsultaEventoMDI
   Left = 298
   Top = 183
-  Caption = 'Consulta Evento'
+  Caption = 'Consulta de Eventos Cadastrados'
   PixelsPerInch = 96
   TextHeight = 13
   inherited gr_consulta: TDBGrid

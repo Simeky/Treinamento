@@ -1,8 +1,9 @@
 inherited frCadastroSessaoMDI: TfrCadastroSessaoMDI
-  Left = 585
+  Left = 671
+  Top = 12
   Width = 386
   Height = 267
-  Caption = 'Cadastro Sess'#227'o'
+  Caption = 'Cadastro de Sess'#245'es'
   Constraints.MaxHeight = 267
   Constraints.MinHeight = 267
   Constraints.MinWidth = 386
@@ -100,13 +101,6 @@ inherited frCadastroSessaoMDI: TfrCadastroSessaoMDI
       Text = '0'
       id = 0
     end
-    object ed_etapa_ses: TEdit
-      Left = 96
-      Top = 80
-      Width = 241
-      Height = 21
-      TabOrder = 4
-    end
     object dtp_inicio_ses_date: TDateTimePicker
       Left = 96
       Top = 112
@@ -146,6 +140,20 @@ inherited frCadastroSessaoMDI: TfrCadastroSessaoMDI
       Time = 45810.704193506940000000
       Kind = dtkTime
       TabOrder = 8
+    end
+    object cb_etapa_ses: TComboBox
+      Left = 96
+      Top = 80
+      Width = 241
+      Height = 22
+      Style = csOwnerDrawFixed
+      ItemHeight = 16
+      TabOrder = 4
+      Items.Strings = (
+        'Etapa 1'
+        'Etapa 2'
+        'Intervalo 1'
+        'Intervalo 2')
     end
   end
 end

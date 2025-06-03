@@ -73,7 +73,7 @@ begin
   ds_consulta.DataSet := dmTreinamento.cds_pessoa_local;
 
   if dmTreinamento.cds_pessoa_local.IsEmpty then
-    ShowMessage('O código informado não foi cadastrado ou não existe!');
+    ShowMessage('O ID do Local Informado não foi Cadastrado ou Não Existe!');
 end;
 
 end.
