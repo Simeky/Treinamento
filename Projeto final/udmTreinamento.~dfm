@@ -2,9 +2,9 @@ object dmTreinamento: TdmTreinamento
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Left = 544
-  Top = 233
-  Height = 297
-  Width = 531
+  Top = 237
+  Height = 293
+  Width = 596
   object SQLConnection: TSQLConnection
     ConnectionName = 'DB2Connection'
     DriverName = 'DB2'
@@ -135,6 +135,18 @@ object dmTreinamento: TdmTreinamento
     Params = <>
     ProviderName = 'dsp_local_pessoa'
     Left = 432
+    Top = 192
+  end
+  object dsp_pessoa_local: TDataSetProvider
+    DataSet = qSelect
+    Left = 520
+    Top = 136
+  end
+  object cds_pessoa_local: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsp_pessoa_local'
+    Left = 520
     Top = 192
   end
 end

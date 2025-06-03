@@ -1,8 +1,8 @@
 object dmTreinamento: TdmTreinamento
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 544
-  Top = 237
+  Left = 468
+  Top = 317
   Height = 293
   Width = 596
   object SQLConnection: TSQLConnection

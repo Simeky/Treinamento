@@ -1,26 +1,27 @@
 unit uUtils;
 
 interface
-  function so_numeros(numero_texto: String): String;
-  function validar_cpf(cpf: String): Boolean;
-  function validar_cnpj(cnpj: String): Boolean;
+  function so_numeros(pr_numero_texto: String): String;
+  function validar_cpf(pr_cpf: String): Boolean;
+  function validar_cnpj(pr_cnpj: String): Boolean;
+  function validar_email(pr_email: String): Boolean;
 
 implementation
 uses SysUtils;
 
-function so_numeros(numero_texto: string): string;
+function so_numeros(pr_numero_texto: string): string;
 var
   i: Integer;
 begin
   Result := '';
-  for i := 1 to Length(Numero_Texto) do
+  for i := 1 to Length(pr_numero_texto) do
   begin
-    if Numero_Texto[i] in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] then
-      Result := Result + Numero_Texto[i];
+    if pr_numero_texto[i] in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] then
+      Result := Result + pr_numero_texto[i];
   end;
 end;
 
-function validar_cpf(cpf: string): Boolean;
+function validar_cpf(pr_cpf: string): Boolean;
 var
   wcpfNumeros: string;
   wdigito10, wdigito11: Char;
@@ -28,7 +29,7 @@ var
   i: Byte;
 begin
   Result := False;
-  wcpfNumeros := so_numeros(cpf);
+  wcpfNumeros := so_numeros(pr_cpf);
 
   if Length(wcpfNumeros) <> 11 then
     Exit;
@@ -64,17 +65,18 @@ end;
 
 //------------//------------//
 
-function validar_cnpf(cnpj: string): Boolean;
-var
+function validar_cnpj(pr_cnpj: String): Boolean;
+const
   wpeso1: array[1..12] of Integer = (5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2);
   wpeso2: array[1..13] of Integer = (6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2);
+var
   wcnpjNumeros: string;
   wdigito13, wdigito14: Char;
   wsoma, wresto: Integer;
   i: Integer;
 begin
   Result := False;
-  wcnpjNumeros := so_numeros(cnpj);
+  wcnpjNumeros := so_numeros(pr_cnpj);
 
   if Length(wcnpjNumeros) <> 14 then
     Exit;
@@ -108,6 +110,12 @@ begin
   Result := (wdigito13 = wcnpjNumeros[13]) and (wdigito14 = wcnpjNumeros[14]);
 end;
 
+//Verifica se possui @ e . no email
+function validar_email(pr_email: string): Boolean;
+begin
+  Result := (Pos('@', pr_email) > 1) and
+            (Pos('.', Copy(pr_email, Pos('@', pr_email) + 2, Length(pr_email))) > 0);
+end;
 
 
 

@@ -8,18 +8,32 @@ drop table t_pessoa;
 drop table t_local;
 drop table t_empresa;
 
-drop domain dm_nome;
-drop domain dm_email;
-drop domain dm_cpf;
+drop domain dm_boolean;
 drop domain dm_capacidade;
+drop domain dm_cep;
+drop domain dm_cnpj;
+drop domain dm_cpf;
+drop domain dm_data;
+drop domain dm_datetime;
+drop domain dm_email;
 drop domain dm_etapa;
+drop domain dm_inscricao;
+drop domain dm_nome;
+drop domain dm_num_endereco;
+drop domain dm_telefone;
+drop domain dm_tipo;
+drop domain dm_uf;
 
 drop trigger t_empresa_bi_autoin;
 drop trigger t_evento_bi_autoin;
 drop trigger t_local_bi_autoin;
 drop trigger t_pessoa_bi_autoin;
 drop trigger t_sessao_bi_autoin;
-drop trigger t_local_ai_capacidade_atual
+drop trigger t_local_ai_capacidade_atual;
+drop trigger t_sessao_ai_update_capacidade;
+drop trigger t_sessao_bi_ex_capacidade;
+
+drop exception ex_lotacao_excedida;
 
 /*
     Domains
@@ -140,7 +154,7 @@ constraint fk_sessao_evento foreign key(bd_id_eve) references t_evento(bd_id_eve
   Exception
 */
 
-Create exception ex_lotacao_excedida 'Capacidade m√°xima do local excedida!';
+Create exception ex_lotacao_excedida 'Capacidade M·xima do local excedida!';
 
 /*
   Triggers
@@ -222,7 +236,6 @@ begin
   update t_local set bd_capacidade_atual_loc = bd_capacidade_atual_loc + 1
   where bd_id_loc = new.bd_id_loc;
 end;
-
 
 
 

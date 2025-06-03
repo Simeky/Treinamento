@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ToolWin, ComCtrls, Menus;
+  Dialogs, ToolWin, ComCtrls, Menus, ExtCtrls;
 
 type
   TfrPrincipal = class(TForm)
@@ -16,15 +16,15 @@ type
     empresa: TMenuItem;
     evento: TMenuItem;
     Consultas1: TMenuItem;
-    Pessoaporlocal1: TMenuItem;
-    SalaporPessoa1: TMenuItem;
+    locais_pessoa: TMenuItem;
+    quantidade_pessoas_sala: TMenuItem;
     procedure pessoaClick(Sender: TObject);
     procedure empresaClick(Sender: TObject);
     procedure eventoClick(Sender: TObject);
     procedure localClick(Sender: TObject);
     procedure sessaoClick(Sender: TObject);
-    procedure Pessoaporlocal1Click(Sender: TObject);
-    procedure SalaporPessoa1Click(Sender: TObject);
+    procedure locais_pessoaClick(Sender: TObject);
+    procedure quantidade_pessoas_salaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -69,12 +69,12 @@ begin
  TfrCadastroSessaoMDI.Create(self);
 end;
 
-procedure TfrPrincipal.Pessoaporlocal1Click(Sender: TObject);
+procedure TfrPrincipal.locais_pessoaClick(Sender: TObject);
 begin
   TfrConsultaLocalPessoaMDI.Create(self);
 end;
 
-procedure TfrPrincipal.SalaporPessoa1Click(Sender: TObject);
+procedure TfrPrincipal.quantidade_pessoas_salaClick(Sender: TObject);
 begin
   TfrConsultaPessoaLocalMDI.Create(self);
 end;
