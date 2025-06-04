@@ -2,6 +2,21 @@
   Drops
 */
 
+drop trigger t_empresa_bi_autoin;
+drop trigger t_evento_bi_autoin;
+drop trigger t_local_bi_autoin;
+drop trigger t_pessoa_bi_autoin;
+drop trigger t_sessao_bi_autoin;
+drop trigger t_local_ai_capacidade_atual;
+drop trigger t_sessao_ai_update_capacidade;
+drop trigger t_sessao_bi_ex_capacidade;
+drop trigger t_empresa_bd_pessoa;
+drop trigger t_evento_bd_sessao;
+drop trigger t_local_bd_sessao;
+drop trigger t_pessoa_bd_sessao;
+drop trigger t_sessao_ad_capacidade_atual;
+drop trigger t_sessao_au_capacidade_atual;
+
 drop table t_sessao;
 drop table t_evento;
 drop table t_pessoa;
@@ -24,20 +39,7 @@ drop domain dm_telefone;
 drop domain dm_tipo;
 drop domain dm_uf;
 
-drop trigger t_empresa_bi_autoin;
-drop trigger t_evento_bi_autoin;
-drop trigger t_local_bi_autoin;
-drop trigger t_pessoa_bi_autoin;
-drop trigger t_sessao_bi_autoin;
-drop trigger t_local_ai_capacidade_atual;
-drop trigger t_sessao_ai_update_capacidade;
-drop trigger t_sessao_bi_ex_capacidade;
-drop trigger t_empresa_bd_pessoa;
-drop trigger t_evento_bd_sessao;
-drop trigger t_local_bd_sessao;
-drop trigger t_pessoa_bd_sessao;
-drop trigger t_sessao_ad_capacidade_atual;
-drop trigger t_sessao_au_capacidade_atual;
+
 
 drop exception ex_lotacao_excedida;
 
@@ -295,7 +297,6 @@ begin
   update t_local set bd_capacidade_atual_loc = bd_capacidade_atual_loc + 1
   where bd_id_loc = new.bd_id_loc;
 end;
-
 
 
 
