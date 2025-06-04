@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ToolWin, ComCtrls, Menus, ExtCtrls;
+  Dialogs, ToolWin, ComCtrls, Menus, ExtCtrls, StdCtrls;
 
 type
   TfrPrincipal = class(TForm)
@@ -18,6 +18,7 @@ type
     Consultas1: TMenuItem;
     locais_pessoa: TMenuItem;
     quantidade_pessoas_sala: TMenuItem;
+    la_principal: TLabel;
     procedure pessoaClick(Sender: TObject);
     procedure empresaClick(Sender: TObject);
     procedure eventoClick(Sender: TObject);
@@ -37,7 +38,7 @@ var
 implementation
 
 uses uCadastroPessoaMDI, uCadastroEmpresaMDI, uCadastroEventoMDI,
-  uCadastroLocalMDI, uCadastroSessaoMDI, uConsultaLocalPessoaMDI,
+  uCadastroLocalMDI, uConsultaLocalPessoaMDI, uCadastroSessaoMDI,
   uConsultaPessoaLocalMDI;
 
 {$R *.dfm}

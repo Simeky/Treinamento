@@ -1,6 +1,6 @@
 object frPrincipal: TfrPrincipal
-  Left = -2
-  Top = 0
+  Left = 66
+  Top = 46
   Width = 1544
   Height = 820
   Align = alClient
@@ -17,6 +17,22 @@ object frPrincipal: TfrPrincipal
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object la_principal: TLabel
+    Left = 448
+    Top = 312
+    Width = 578
+    Height = 67
+    Alignment = taCenter
+    Caption = 'Seja Bem-vindo(a)'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -67
+    Font.Name = 'MS Gothic'
+    Font.Pitch = fpFixed
+    Font.Style = []
+    ParentFont = False
+    Layout = tlCenter
+  end
   object MainMenu1: TMainMenu
     Left = 352
     Top = 56

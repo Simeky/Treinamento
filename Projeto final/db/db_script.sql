@@ -32,6 +32,12 @@ drop trigger t_sessao_bi_autoin;
 drop trigger t_local_ai_capacidade_atual;
 drop trigger t_sessao_ai_update_capacidade;
 drop trigger t_sessao_bi_ex_capacidade;
+drop trigger t_empresa_bd_pessoa;
+drop trigger t_evento_bd_sessao;
+drop trigger t_local_bd_sessao;
+drop trigger t_pessoa_bd_sessao;
+drop trigger t_sessao_ad_capacidade_atual;
+drop trigger t_sessao_au_capacidade_atual;
 
 drop exception ex_lotacao_excedida;
 
@@ -233,9 +239,72 @@ CREATE trigger t_sessao_ai_update_capacidade for t_sessao
 active after insert position 0
 AS
 begin
+  if (not exists(Select 1
+                 from t_sessao
+                 where  bd_id_loc = new.bd_id_loc
+                 and    bd_id_pes = new.bd_id_pes
+                 and    bd_id_ses <> new.bd_id_ses)) then
+    update t_local set bd_capacidade_atual_loc = bd_capacidade_atual_loc + 1
+    where bd_id_loc = new.bd_id_loc;
+end;
+
+CREATE trigger t_empresa_bd_pessoa for t_empresa
+active before delete position 0
+AS
+begin
+  Delete from t_pessoa where bd_id_emp = old.bd_id_emp;
+end;
+
+CREATE trigger t_evento_bd_sessao for t_evento
+active before delete position 0
+AS
+begin
+  Delete from t_sessao where bd_id_eve = old.bd_id_eve;
+end;
+
+CREATE trigger t_local_bd_sessao for t_local
+active before delete position 0
+AS
+begin
+  Delete from t_sessao where bd_id_loc = old.bd_id_loc;
+end;
+
+CREATE trigger t_pessoa_bd_sessao for t_pessoa
+active before delete position 0
+AS
+begin
+  Delete from t_sessao where bd_id_pes = old.bd_id_pes;
+end;
+
+CREATE trigger t_sessao_ad_capacidade_atual for t_sessao
+active after delete position 0
+AS
+begin
+  if (exists(select 1 from t_local where bd_id_loc = old.bd_id_loc and bd_capacidade_atual_loc > 0 )) then
+    update t_local set bd_capacidade_atual_loc = bd_capacidade_atual_loc - 1
+    where bd_id_loc = old.bd_id_loc;
+end;
+
+CREATE trigger t_sessao_au_capacidade_atual for t_sessao
+active after update position 0
+AS
+begin
+  if (exists(select 1 from t_local where bd_id_loc = old.bd_id_loc and bd_capacidade_atual_loc > 0 )) then
+    update t_local set bd_capacidade_atual_loc = bd_capacidade_atual_loc - 1
+    where bd_id_loc = old.bd_id_loc;
   update t_local set bd_capacidade_atual_loc = bd_capacidade_atual_loc + 1
   where bd_id_loc = new.bd_id_loc;
 end;
+
+
+
+
+
+
+
+
+
+
 
 
 
