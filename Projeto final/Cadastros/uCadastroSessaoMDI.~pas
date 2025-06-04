@@ -45,7 +45,7 @@ var
 
 implementation
 
-uses udmTreinamento, uConsultaSessaoMDI;
+uses udmTreinamento, uConsultaSessaoMDI, DB;
 
 {$R *.dfm}
 
@@ -65,7 +65,7 @@ end;
 
 function TfrCadastroSessaoMDI.consultar: TForm;
 begin
-  Result :=  TfrConsultaSessaoMDI.Create(ed_id_ses);
+  Result :=  TfrConsultaSessaoMDI.Create(ed_id_ses);   
 end;
 
 procedure TfrCadastroSessaoMDI.FormShow(Sender: TObject);
@@ -78,15 +78,13 @@ end;
 procedure TfrCadastroSessaoMDI.salvar;
 begin
   inherited;
-  tabela.FieldByName('bd_id_ses').AsInteger       := StrToIntDef(ed_id_eve.Text, 0);
+  tabela.FieldByName('bd_id_ses').AsInteger       := StrToIntDef(ed_id_ses.Text, 0);
   tabela.FieldByName('bd_id_pes').AsInteger       := StrToIntDef(ed_id_pes.Text, 0);
   tabela.FieldByName('bd_id_loc').AsInteger       := StrToIntDef(ed_id_loc.Text, 0);
   tabela.FieldByName('bd_id_eve').AsInteger       := StrToIntDef(ed_id_eve.Text, 0);
   tabela.FieldByName('bd_etapa_ses').AsString     := cb_etapa_ses.Text;
-  tabela.FieldByName('bd_inicio_ses').AsDateTime  := dtp_inicio_ses_date.Date + dtp_inicio_ses_time.Time;
-  tabela.FieldByName('bd_fim_ses').AsDateTime     := dtp_fim_ses_date.Date + dtp_fim_ses_time.Time;
-
-
+  tabela.FieldByName('bd_inicio_ses').AsDateTime  := StrToDateTime(DateToStr(dtp_inicio_ses_date.Date) + ' ' + TimeToStr(dtp_inicio_ses_time.Time));
+  tabela.FieldByName('bd_fim_ses').AsDateTime     := StrToDateTime(DateToStr(dtp_fim_ses_date.Date) + ' ' + TimeToStr(dtp_fim_ses_time.Time));
 end;
 
 function TfrCadastroSessaoMDI.setEdit_id: TEdit;
@@ -106,25 +104,52 @@ end;
 
 function TfrCadastroSessaoMDI.validar: Boolean;
 begin
-  dmTreinamento.cds_local.Open;
-  if  dmTreinamento.cds_local.FieldByName('bd_capacidade_atual_loc').AsInteger >=
-      dmTreinamento.cds_local.FieldByName('bd_capacidade_max_loc').AsInteger then
+  with dmTreinamento.qSelect do
   begin
-    ShowMessage('Não foi Possível Inserir o Registro pois Excede a Capacidade Máxima do Local escolhido.');
-    Result := false;
-    dmTreinamento.cds_local.Close;
+    close;
+    SQL.Clear;
+    SQL.Add(
+    'SELECT bd_capacidade_atual_loc, ' +
+           'bd_capacidade_max_loc ' +
+    'FROM t_local WHERE bd_id_loc = :bd_id_loc;');
+    ParamByName('bd_id_loc').AsInteger := StrToInt(ed_id_loc.Text);
+    Open;
+
+    if FieldByName('bd_capacidade_atual_loc').AsInteger >=
+       FieldByName('bd_capacidade_max_loc').AsInteger then
+    begin
+      ShowMessage('A sala já atingiu a capacidade máxima.');
+      Result := False;
+      Exit;
+    end;
+
+    Close;
+  end;
+
+  if cb_etapa_ses.Items.IndexOf(cb_etapa_ses.Text) = -1 then
+  begin
+    ShowMessage('A Etapa Informada Não é Válida.');
+    Result := False;
     Exit;
   end;
-  dmTreinamento.cds_local.Close;
 
-  dmTreinamento.cds_evento.Open;
-  if dmTreinamento.cds_evento.FieldByName('bd_inicio_eve').AsDateTime <
-     StrToDateTime(DateToStr(dtp_inicio_ses_date.Date) + ' ' + TimeToStr(dtp_inicio_ses_time.Time)) then
+  with dmTreinamento.qSelect do
   begin
-    ShowMessage('O Início da Sessão não pode ser antes do Início do Evento.');
-    Result := false;
-    dmTreinamento.cds_evento.Close;
-    Exit;
+    close;
+    SQL.Clear;
+    SQL.Add('SELECT bd_inicio_eve FROM t_evento WHERE bd_id_eve = :bd_id_eve;');
+    ParamByName('bd_id_eve').AsInteger := StrToInt(ed_id_eve.Text);
+    open;
+
+    if FieldByName('bd_inicio_eve').AsDateTime >
+       StrToDateTime(DateToStr(dtp_inicio_ses_date.Date) + ' ' + TimeToStr(dtp_inicio_ses_time.Time)) then
+    begin
+      ShowMessage('O Início da Sessão não pode ser antes do Início do Evento.');
+      Result := False;
+      Exit;
+    end;
+
+    Close;
   end;
 
   if StrToDateTime(DateToStr(dtp_fim_ses_date.Date) + ' ' + TimeToStr(dtp_fim_ses_time.Time)) <=
@@ -132,12 +157,37 @@ begin
   begin
     ShowMessage('O Fim da Sessão não pode ser antes ou igual ao Início do Sessão.');
     Result := false;
-    dmTreinamento.cds_evento.Close;
     Exit;
   end;
-  dmTreinamento.cds_evento.Close;
 
-  ShowMessage('Sessão Cadastrada com Sucesso.');
+  with dmTreinamento.qSelect do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add(
+      'Select 1 from t_sessao ' +
+      'Where bd_id_pes = :bd_id_pes ' +
+      'And bd_id_eve = :bd_id_eve ' +
+      'And bd_etapa_ses = :bd_etapa_ses ' +
+      'And bd_id_loc <> :bd_id_loc');
+
+    ParamByName('bd_id_pes').AsInteger := StrToInt(ed_id_pes.Text);
+    ParamByName('bd_id_eve').AsInteger := StrToInt(ed_id_eve.Text);
+    ParamByName('bd_etapa_ses').AsString := cb_etapa_ses.Text;
+    ParamByName('bd_id_loc').AsInteger := StrToInt(ed_id_loc.Text);
+    open;
+
+    if not IsEmpty then
+    begin
+      ShowMessage('Essa Pessoa já está Cadastrada em outro Local para esta Etapa deste Evento.');
+      Result := False;
+      Exit;
+    end;
+
+    Close;
+  end;
+
+  ShowMessage('Sessão Cadastrada ou Alterada com Sucesso.');
   Result := True;
 end;
 

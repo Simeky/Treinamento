@@ -120,7 +120,7 @@ begin
     Exit;
   end;
 
-  ShowMessage('Evento Cadastrado com Sucesso.');
+  ShowMessage('Evento Cadastrado ou Alterado com Sucesso.');
   Result := true;
 end;
 

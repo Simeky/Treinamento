@@ -1,8 +1,7 @@
 inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
-  Left = -14
-  Top = 87
+  Left = -12
+  Top = 90
   VertScrollBar.Range = 0
-  Align = alClient
   AutoScroll = False
   Caption = 'Cadastro Empresa'
   ClientHeight = 230

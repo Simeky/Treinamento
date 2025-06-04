@@ -1,6 +1,6 @@
 inherited frCadastroSessaoMDI: TfrCadastroSessaoMDI
-  Left = 671
-  Top = 12
+  Left = 826
+  Top = 197
   Width = 386
   Height = 267
   Caption = 'Cadastro de Sess'#245'es'
@@ -145,9 +145,8 @@ inherited frCadastroSessaoMDI: TfrCadastroSessaoMDI
       Left = 96
       Top = 80
       Width = 241
-      Height = 22
-      Style = csOwnerDrawFixed
-      ItemHeight = 16
+      Height = 21
+      ItemHeight = 13
       TabOrder = 4
       Items.Strings = (
         'Etapa 1'

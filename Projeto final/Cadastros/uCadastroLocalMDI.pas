@@ -98,7 +98,7 @@ begin
     Exit;
   end;
 
-  ShowMessage('Local Cadastrado com Sucesso.');
+  ShowMessage('Local Cadastrado ou Alterado com Sucesso.');
   Result := true;
 end;
 

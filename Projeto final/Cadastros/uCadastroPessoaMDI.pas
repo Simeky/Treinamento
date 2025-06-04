@@ -110,7 +110,7 @@ begin
     Exit;
   end;
 
-  ShowMessage('Pessoa cadastrada com sucesso.');
+  ShowMessage('Pessoa cadastrada ou Alterada com Sucesso.');
   Result := True;
 end;
 

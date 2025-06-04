@@ -203,7 +203,7 @@ begin
     Exit;
   end;
 
-  if not validar_email then
+  if not validar_email(ed_email_emp.Text) then
   begin
     ShowMessage('O E-mail deve conter @ e .');
     Result := False;
@@ -224,7 +224,7 @@ begin
     Exit;
   end;
 
-  ShowMessage('Empresa Cadastrada com Sucesso.');
+  ShowMessage('Empresa Cadastrada ou Alterada com Sucesso.');
   Result := true;
 end;
 

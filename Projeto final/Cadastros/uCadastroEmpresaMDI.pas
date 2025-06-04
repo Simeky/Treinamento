@@ -224,7 +224,7 @@ begin
     Exit;
   end;
 
-  ShowMessage('Empresa Cadastrada com Sucesso.');
+  ShowMessage('Empresa Cadastrada ou Alterada com Sucesso.');
   Result := true;
 end;
 

@@ -23,7 +23,7 @@ inherited frConsultaLocalPessoaMDI: TfrConsultaLocalPessoaMDI
         Expanded = False
         FieldName = 'bd_cpf_pes'
         Title.Caption = 'CPF Pessoa'
-        Width = 76
+        Width = 78
         Visible = True
       end
       item
