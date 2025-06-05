@@ -73,6 +73,10 @@ begin
   inherited;
   Height := 267;
   Width := 386;
+  dtp_inicio_ses_date.Date := Now;
+  dtp_fim_ses_date.Date := Now;
+  dtp_inicio_ses_time.Time := Now;
+  dtp_fim_ses_time.Time := Now;
 end;
 
 procedure TfrCadastroSessaoMDI.salvar;
@@ -104,6 +108,97 @@ end;
 
 function TfrCadastroSessaoMDI.validar: Boolean;
 begin
+
+  with dmTreinamento.qSelect do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add(
+      'Select 1 from t_pessoa ' +
+      'Where bd_id_pes = :bd_id_pes;');
+
+    ParamByName('bd_id_pes').AsInteger := StrToInt(ed_id_pes.Text);
+    open;
+
+    if IsEmpty then
+    begin
+      ShowMessage('A Pessoa com o ID: ' + ed_id_pes.Text + ' Não existe.' );
+      Result := False;
+      Exit;
+    end;
+
+    Close;
+  end;
+
+  with dmTreinamento.qSelect do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add(
+      'Select 1 from t_local ' +
+      'Where bd_id_loc = :bd_id_loc;');
+
+    ParamByName('bd_id_loc').AsInteger := StrToInt(ed_id_loc.Text);
+    open;
+
+    if IsEmpty then
+    begin
+      ShowMessage('O Local com o ID: ' + ed_id_pes.Text + ' Não existe.' );
+      Result := False;
+      Exit;
+    end;
+
+    Close;
+  end;
+
+  with dmTreinamento.qSelect do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add(
+      'Select 1 from t_evento ' +
+      'Where bd_id_eve = :bd_id_eve;');
+
+    ParamByName('bd_id_eve').AsInteger := StrToInt(ed_id_eve.Text);
+    open;
+
+    if IsEmpty then
+    begin
+      ShowMessage('O Evento com o ID: ' + ed_id_pes.Text + ' Não existe.' );
+      Result := False;
+      Exit;
+    end;
+
+    Close;
+  end;
+
+  with dmTreinamento.qSelect do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add(
+      'Select 1 from t_sessao ' +
+      'Where bd_id_pes = :bd_id_pes ' +
+      'And bd_id_eve = :bd_id_eve ' +
+      'And bd_etapa_ses = :bd_etapa_ses ' +
+      'And bd_id_loc <> :bd_id_loc');
+
+    ParamByName('bd_id_pes').AsInteger := StrToInt(ed_id_pes.Text);
+    ParamByName('bd_id_eve').AsInteger := StrToInt(ed_id_eve.Text);
+    ParamByName('bd_etapa_ses').AsString := cb_etapa_ses.Text;
+    ParamByName('bd_id_loc').AsInteger := StrToInt(ed_id_loc.Text);
+    open;
+
+    if not IsEmpty then
+    begin
+      ShowMessage('Essa Pessoa já está Cadastrada em outro Local para esta Etapa deste Evento.');
+      Result := False;
+      Exit;
+    end;
+
+    Close;
+  end;
+
   with dmTreinamento.qSelect do
   begin
     close;
@@ -158,33 +253,6 @@ begin
     ShowMessage('O Fim da Sessão não pode ser antes ou igual ao Início do Sessão.');
     Result := false;
     Exit;
-  end;
-
-  with dmTreinamento.qSelect do
-  begin
-    Close;
-    SQL.Clear;
-    SQL.Add(
-      'Select 1 from t_sessao ' +
-      'Where bd_id_pes = :bd_id_pes ' +
-      'And bd_id_eve = :bd_id_eve ' +
-      'And bd_etapa_ses = :bd_etapa_ses ' +
-      'And bd_id_loc <> :bd_id_loc');
-
-    ParamByName('bd_id_pes').AsInteger := StrToInt(ed_id_pes.Text);
-    ParamByName('bd_id_eve').AsInteger := StrToInt(ed_id_eve.Text);
-    ParamByName('bd_etapa_ses').AsString := cb_etapa_ses.Text;
-    ParamByName('bd_id_loc').AsInteger := StrToInt(ed_id_loc.Text);
-    open;
-
-    if not IsEmpty then
-    begin
-      ShowMessage('Essa Pessoa já está Cadastrada em outro Local para esta Etapa deste Evento.');
-      Result := False;
-      Exit;
-    end;
-
-    Close;
   end;
 
   ShowMessage('Sessão Cadastrada ou Alterada com Sucesso.');

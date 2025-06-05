@@ -94,6 +94,10 @@ begin
   inherited;
   Height := 230;
   Width := 498;
+  dtp_inicio_eve_date.Date := Now;
+  dtp_fim_eve_date.Date := Now;
+  dtp_inicio_eve_time.Time := Now;
+  dtp_fim_eve_time.Time := Now;
 end;
 
 function TfrCadastroEventoMDI.validar: Boolean;

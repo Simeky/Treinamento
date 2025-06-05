@@ -96,6 +96,28 @@ end;
 
 function TfrCadastroPessoaMDI.validar: Boolean;
 begin
+
+  with dmTreinamento.qSelect do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add(
+      'Select 1 from t_empresa ' +
+      'Where bd_id_emp = :bd_id_emp;');
+
+    ParamByName('bd_id_emp').AsInteger := StrToInt(ed_id_afi.Text);
+    open;
+
+    if IsEmpty then
+    begin
+      ShowMessage('A Empresa com o ID: ' + ed_id_afi.Text + ' Não existe.' );
+      Result := False;
+      Exit;
+    end;
+
+    Close;
+  end;
+
   if not validar_email(ed_email_pes.Text) then
   begin
     ShowMessage('O E-mail deve conter @ e .');
