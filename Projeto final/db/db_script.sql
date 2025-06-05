@@ -16,6 +16,7 @@ drop trigger t_local_bd_sessao;
 drop trigger t_pessoa_bd_sessao;
 drop trigger t_sessao_ad_capacidade_atual;
 drop trigger t_sessao_au_capacidade_atual;
+drop trigger t_local_au_capacidade_zero;
 
 drop table t_sessao;
 drop table t_evento;
@@ -297,6 +298,15 @@ begin
   update t_local set bd_capacidade_atual_loc = bd_capacidade_atual_loc + 1
   where bd_id_loc = new.bd_id_loc;
 end;
+
+CREATE trigger t_local_au_capacidade_zero for t_local
+active after update position 0
+AS
+begin
+    if ((select bd_capacidade_atual_loc from t_local where bd_id_loc = new.bd_id_loc) < 0) then
+        update t_local set bd_capacidade_atual_loc = 0 where bd_id_loc = new.bd_id_loc;
+end;
+
 
 
 
