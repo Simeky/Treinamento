@@ -10,6 +10,7 @@ uses
 type
   TfrConsultaPessoaLocalMDI = class(TfrConsultaPadraoMDI)
     ed_id_consulta: TEdit_numerico;
+    lb_id_loc: TLabel;
     procedure tbt_confirmarClick(Sender: TObject);
   private
     { Private declarations }
@@ -74,6 +75,9 @@ begin
 
   if dmTreinamento.cds_pessoa_local.IsEmpty then
     ShowMessage('O ID do Local Informado não foi Cadastrado ou Não Existe!');
+
+  bt_refresh.Enabled := True;
+
 end;
 
 end.

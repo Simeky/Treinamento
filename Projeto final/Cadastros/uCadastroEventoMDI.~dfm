@@ -1,6 +1,6 @@
 inherited frCadastroEventoMDI: TfrCadastroEventoMDI
-  Left = 589
-  Top = 330
+  Left = 421
+  Top = 191
   Width = 498
   Height = 230
   Caption = 'Cadastro de Eventos'
@@ -14,38 +14,38 @@ inherited frCadastroEventoMDI: TfrCadastroEventoMDI
   inherited tb_ferramentas: TToolBar
     Width = 482
   end
-  inherited pa_cadastro: TPanel
+  inherited pn_cadastro: TPanel
     Width = 482
     Height = 145
-    object la_id_eve: TLabel
+    object lb_id_eve: TLabel
       Left = 32
       Top = 16
       Width = 48
       Height = 13
       Caption = 'ID Evento'
     end
-    object la_nome_eve: TLabel
+    object lb_nome_eve: TLabel
       Left = 184
       Top = 16
       Width = 28
       Height = 13
       Caption = 'Nome'
     end
-    object la_desc_eve: TLabel
+    object lb_desc_eve: TLabel
       Left = 32
       Top = 48
       Width = 48
       Height = 13
       Caption = 'Descri'#231#227'o'
     end
-    object la_inicio_eve: TLabel
+    object lb_inicio_eve: TLabel
       Left = 3
       Top = 80
       Width = 78
       Height = 13
       Caption = 'In'#237'cio do evento'
     end
-    object la_fim_eve: TLabel
+    object lb_fim_eve: TLabel
       Left = 16
       Top = 112
       Width = 67

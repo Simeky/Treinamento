@@ -10,8 +10,12 @@ type
   TfrConsultaPadraoMDI = class(TfrPadraoSimples)
     ds_consulta: TDataSource;
     gr_consulta: TDBGrid;
+    bt_refresh: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure tbt_confirmarClick(Sender: TObject);
+    procedure bt_refreshClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     f_tabela: TClientDataSet;
@@ -46,7 +50,6 @@ begin
   end;
 
   gr_consulta.Options := [dgTitles,dgIndicator,dgColumnResize,dgColLines,dgRowLines,dgTabs,dgCancelOnExit];
-
 end;
 
 procedure TfrConsultaPadraoMDI.tbt_confirmarClick(Sender: TObject);
@@ -58,6 +61,20 @@ begin
     TEdit(Owner).SetFocus;
     Close;
   end;
+end;
+
+procedure TfrConsultaPadraoMDI.bt_refreshClick(Sender: TObject);
+begin
+  inherited;
+  f_tabela.Refresh;
+end;
+
+procedure TfrConsultaPadraoMDI.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if Key = VK_F5 then
+    bt_refresh.Click;
 end;
 
 end.

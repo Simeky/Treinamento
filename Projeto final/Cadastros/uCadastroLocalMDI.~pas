@@ -9,12 +9,12 @@ uses
 
 type
   TfrCadastroLocalMDI = class(TfrCadastroPadraoMDI)
-    la_id_loc: TLabel;
-    la_nome_loc: TLabel;
-    la_capacidade_max_loc: TLabel;
+    lb_id_loc: TLabel;
+    lb_nome_loc: TLabel;
+    lb_lotacao_max_loc: TLabel;
     ed_id_loc: TEdit_numerico;
     ed_nome_loc: TEdit;
-    ed_capacidade_max_loc: TEdit_numerico;
+    ed_lotacao_max_loc: TEdit_numerico;
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
@@ -41,9 +41,9 @@ uses udmTreinamento, uConsultaLocalMDI;
 procedure TfrCadastroLocalMDI.carregar;
 begin
   inherited;
-  ed_id_loc.Text              := tabela.FieldByName('bd_id_loc').AsString;
-  ed_nome_loc.Text            := tabela.FieldByName('bd_nome_loc').AsString;
-  ed_capacidade_max_loc.Text  := tabela.FieldByName('bd_capacidade_max').AsString;
+  ed_id_loc.Text          := tabela.FieldByName('bd_id_loc').AsString;
+  ed_nome_loc.Text        := tabela.FieldByName('bd_nome_loc').AsString;
+  ed_lotacao_max_loc.Text := tabela.FieldByName('bd_lotacao_max_loc').AsString;
 end;
 
 function TfrCadastroLocalMDI.consultar: TForm;
@@ -61,9 +61,9 @@ end;
 procedure TfrCadastroLocalMDI.salvar;
 begin
   inherited;
-  tabela.FieldByName('bd_id_loc').AsInteger             := StrToIntDef(ed_id_loc.Text, 0);
-  tabela.FieldByName('bd_nome_loc').AsString            := ed_nome_loc.Text;
-  tabela.FieldByName('bd_capacidade_max_loc').AsString  := ed_capacidade_max_loc.Text;
+  tabela.FieldByName('bd_id_loc').AsInteger         := StrToIntDef(ed_id_loc.Text, 0);
+  tabela.FieldByName('bd_nome_loc').AsString        := ed_nome_loc.Text;
+  tabela.FieldByName('bd_lotacao_max_loc').AsString := ed_lotacao_max_loc.Text;
 end;
 
 function TfrCadastroLocalMDI.setEdit_id: TEdit;
@@ -91,14 +91,14 @@ begin
     Exit;
   end;
 
-  if StrToIntDef(ed_capacidade_max_loc.Text, 0) <= 0 then
+  if StrToIntDef(ed_lotacao_max_loc.Text, 0) <= 0 then
   begin
-    ShowMessage('A Capacidade Máxima PRECISA ser maior do que 0.');
+    ShowMessage('A Lotacao Máxima PRECISA ser maior do que 0.');
     Result := false;
     Exit;
   end;
 
-  ShowMessage('Local Cadastrado com Sucesso.');
+  ShowMessage('Local Cadastrado ou Alterado com Sucesso.');
   Result := true;
 end;
 

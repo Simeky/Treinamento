@@ -1,6 +1,6 @@
 inherited frConsultaLocalPessoaMDI: TfrConsultaLocalPessoaMDI
-  Left = 293
-  Top = 224
+  Left = 215
+  Top = 151
   Caption = 'Consulta de Locais onde a Pessoa ficara '
   PixelsPerInch = 96
   TextHeight = 13
@@ -69,9 +69,22 @@ inherited frConsultaLocalPessoaMDI: TfrConsultaLocalPessoaMDI
       end>
   end
   inherited tb_ferramentas: TToolBar [1]
+    inherited bt_refresh: TToolButton
+      Enabled = False
+    end
+    object lb_id_pes: TLabel
+      Left = 180
+      Top = 0
+      Width = 53
+      Height = 44
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = 'ID Pessoa'
+      Layout = tlCenter
+    end
   end
   object ed_id_consulta: TEdit_numerico [2]
-    Left = 216
+    Left = 240
     Top = 16
     Width = 121
     Height = 21

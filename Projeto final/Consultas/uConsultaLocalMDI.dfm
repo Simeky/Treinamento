@@ -16,21 +16,21 @@ inherited frConsultaLocalMDI: TfrConsultaLocalMDI
         Expanded = False
         FieldName = 'bd_nome_loc'
         Title.Caption = 'Nome'
-        Width = 86
+        Width = 110
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'bd_capacidade_max_loc'
-        Title.Caption = 'Capacidade M'#225'xima'
-        Width = 104
+        FieldName = 'bd_lotacao_max_loc'
+        Title.Caption = 'Lota'#231#227'o M'#225'xima'
+        Width = 85
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'bd_capacidade_atual_loc'
-        Title.Caption = 'Capacidade atual'
-        Width = 87
+        FieldName = 'bd_lotacao_atual_loc'
+        Title.Caption = 'Lota'#231#227'o atual'
+        Width = 72
         Visible = True
       end>
   end

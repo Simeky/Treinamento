@@ -1,6 +1,6 @@
 inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
-  Left = 774
-  Top = 172
+  Left = 477
+  Top = 235
   Width = 274
   Height = 241
   Caption = 'Cadastro de Pessoas'
@@ -14,43 +14,43 @@ inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
   inherited tb_ferramentas: TToolBar
     Width = 258
   end
-  inherited pa_cadastro: TPanel
+  inherited pn_cadastro: TPanel
     Width = 258
     Height = 156
-    object la_id_pes: TLabel
+    object lb_id_pes: TLabel
       Left = 32
       Top = 16
       Width = 49
       Height = 13
       Caption = 'ID Pessoa'
     end
-    object la_nome_pes: TLabel
+    object lb_nome_pes: TLabel
       Left = 8
       Top = 40
       Width = 75
       Height = 13
       Caption = 'Nome Completo'
     end
-    object la_email_pes: TLabel
+    object lb_email_pes: TLabel
       Left = 52
       Top = 64
       Width = 28
       Height = 13
       Caption = 'E-mail'
     end
-    object la_cpf_pes: TLabel
+    object lb_cpf_pes: TLabel
       Left = 60
       Top = 88
       Width = 20
       Height = 13
       Caption = 'CPF'
     end
-    object la_id_afi: TLabel
+    object lb_id_emp: TLabel
       Left = 26
       Top = 112
-      Width = 54
+      Width = 55
       Height = 13
-      Caption = 'ID Afilia'#231#227'o'
+      Caption = 'ID Empresa'
     end
     object ed_id_pes: TEdit_numerico
       Left = 88
@@ -61,7 +61,7 @@ inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
       Text = '0'
       id = 0
     end
-    object ed_id_afi: TEdit_numerico
+    object ed_id_emp: TEdit_numerico
       Left = 88
       Top = 112
       Width = 121
@@ -87,9 +87,9 @@ inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
     object med_cpf_pes: TMaskEdit
       Left = 88
       Top = 88
-      Width = 120
+      Width = 118
       Height = 21
-      EditMask = '000\.000\.000\-00;1;_'
+      EditMask = '000\.000\.000\-00;1; '
       MaxLength = 14
       TabOrder = 3
       Text = '   .   .   -  '

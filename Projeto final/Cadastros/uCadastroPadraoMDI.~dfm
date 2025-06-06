@@ -8,21 +8,19 @@ inherited frCadastroPadraoMDI: TfrCadastroPadraoMDI
   PixelsPerInch = 96
   TextHeight = 13
   inherited tb_ferramentas: TToolBar
-    inherited tbt_confirmar: TToolButton
+    inherited bt_confirmar: TToolButton
+      Caption = 'Excluir'
       OnClick = tbt_confirmarClick
     end
-    inherited tbt_cancelar: TToolButton
-      Caption = 'Excluir'
-    end
-    object tbt_consultar: TToolButton
+    object bt_consultar: TToolButton
       Left = 102
       Top = 0
       Caption = 'Consultar'
       ImageIndex = 2
-      OnClick = tbt_consultarClick
+      OnClick = bt_consultarClick
     end
   end
-  object pa_cadastro: TPanel [1]
+  object pn_cadastro: TPanel [1]
     Left = 0
     Top = 46
     Width = 1028

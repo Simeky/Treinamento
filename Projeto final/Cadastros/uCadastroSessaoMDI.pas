@@ -107,120 +107,106 @@ begin
 end;
 
 function TfrCadastroSessaoMDI.validar: Boolean;
+var
+  w_data_hora_inicio, w_data_hora_fim : String;
 begin
 
-  with dmTreinamento.qSelect do
+  w_data_hora_inicio := DateToStr(dtp_inicio_ses_date.Date) + ' ' + TimeToStr(dtp_inicio_ses_time.Time);
+  w_data_hora_fim    := DateToStr(dtp_fim_ses_date.Date) + ' ' + TimeToStr(dtp_fim_ses_time.Time);
+
+  dmTreinamento.qSelect.Close;
+  dmTreinamento.qSelect.SQL.Clear;
+  dmTreinamento.qSelect.SQL.Add(
+    'Select 1 from t_pessoa ' +
+    'Where bd_id_pes = :bd_id_pes;');
+
+  dmTreinamento.qSelect.ParamByName('bd_id_pes').AsInteger := StrToIntDef(ed_id_pes.Text, 0);
+  dmTreinamento.qSelect.open;
+
+  if dmTreinamento.qSelect.IsEmpty then
   begin
-    Close;
-    SQL.Clear;
-    SQL.Add(
-      'Select 1 from t_pessoa ' +
-      'Where bd_id_pes = :bd_id_pes;');
-
-    ParamByName('bd_id_pes').AsInteger := StrToInt(ed_id_pes.Text);
-    open;
-
-    if IsEmpty then
-    begin
-      ShowMessage('A Pessoa com o ID: ' + ed_id_pes.Text + ' Não existe.' );
-      Result := False;
-      Exit;
-    end;
-
-    Close;
+    ShowMessage('A Pessoa com o ID: ' + ed_id_pes.Text + ' Não existe.' );
+    Result := False;
+    Exit;
   end;
+  dmTreinamento.qSelect.Close;
 
-  with dmTreinamento.qSelect do
+  dmTreinamento.qSelect.Close;
+  dmTreinamento.qSelect.SQL.Clear;
+  dmTreinamento.qSelect.SQL.Add(
+    'Select 1 from t_local ' +
+    'Where bd_id_loc = :bd_id_loc;');
+
+  dmTreinamento.qSelect.ParamByName('bd_id_loc').AsInteger := StrToIntDef(ed_id_loc.Text, 0);
+  dmTreinamento.qSelect.open;
+
+  if dmTreinamento.qSelect.IsEmpty then
   begin
-    Close;
-    SQL.Clear;
-    SQL.Add(
-      'Select 1 from t_local ' +
-      'Where bd_id_loc = :bd_id_loc;');
-
-    ParamByName('bd_id_loc').AsInteger := StrToInt(ed_id_loc.Text);
-    open;
-
-    if IsEmpty then
-    begin
-      ShowMessage('O Local com o ID: ' + ed_id_pes.Text + ' Não existe.' );
-      Result := False;
-      Exit;
-    end;
-
-    Close;
+    ShowMessage('O Local com o ID: ' + ed_id_loc.Text + ' Não existe.' );
+    Result := False;
+    Exit;
   end;
+  dmTreinamento.qSelect.Close;
 
-  with dmTreinamento.qSelect do
+  dmTreinamento.qSelect.Close;
+  dmTreinamento.qSelect.SQL.Clear;
+  dmTreinamento.qSelect.SQL.Add(
+    'Select 1 from t_evento ' +
+    'Where bd_id_eve = :bd_id_eve;');
+
+  dmTreinamento.qSelect.ParamByName('bd_id_eve').AsInteger := StrToIntDef(ed_id_eve.Text, 0);
+  dmTreinamento.qSelect.open;
+
+  if dmTreinamento.qSelect.IsEmpty then
   begin
-    Close;
-    SQL.Clear;
-    SQL.Add(
-      'Select 1 from t_evento ' +
-      'Where bd_id_eve = :bd_id_eve;');
-
-    ParamByName('bd_id_eve').AsInteger := StrToInt(ed_id_eve.Text);
-    open;
-
-    if IsEmpty then
-    begin
-      ShowMessage('O Evento com o ID: ' + ed_id_pes.Text + ' Não existe.' );
-      Result := False;
-      Exit;
-    end;
-
-    Close;
+    ShowMessage('O Evento com o ID: ' + ed_id_eve.Text + ' Não existe.' );
+    Result := False;
+    Exit;
   end;
+  dmTreinamento.qSelect.Close;
 
-  with dmTreinamento.qSelect do
+  dmTreinamento.qSelect.Close;
+  dmTreinamento.qSelect.SQL.Clear;
+  dmTreinamento.qSelect.SQL.Add(
+    'Select 1 from t_sessao ' +
+    'Where bd_id_pes = :bd_id_pes ' +
+    'And bd_id_eve = :bd_id_eve ' +
+    'And bd_etapa_ses = :bd_etapa_ses ' +
+    'And bd_id_loc <> :bd_id_loc');
+
+  dmTreinamento.qSelect.ParamByName('bd_id_pes').AsInteger := StrToIntDef(ed_id_pes.Text, 0);
+  dmTreinamento.qSelect.ParamByName('bd_id_eve').AsInteger := StrToIntDef(ed_id_eve.Text, 0);
+  dmTreinamento.qSelect.ParamByName('bd_etapa_ses').AsString := cb_etapa_ses.Text;
+  dmTreinamento.qSelect.ParamByName('bd_id_loc').AsInteger := StrToIntDef(ed_id_loc.Text, 0);
+  dmTreinamento.qSelect.open;
+
+  if not dmTreinamento.qSelect.IsEmpty then
   begin
-    Close;
-    SQL.Clear;
-    SQL.Add(
-      'Select 1 from t_sessao ' +
-      'Where bd_id_pes = :bd_id_pes ' +
-      'And bd_id_eve = :bd_id_eve ' +
-      'And bd_etapa_ses = :bd_etapa_ses ' +
-      'And bd_id_loc <> :bd_id_loc');
-
-    ParamByName('bd_id_pes').AsInteger := StrToInt(ed_id_pes.Text);
-    ParamByName('bd_id_eve').AsInteger := StrToInt(ed_id_eve.Text);
-    ParamByName('bd_etapa_ses').AsString := cb_etapa_ses.Text;
-    ParamByName('bd_id_loc').AsInteger := StrToInt(ed_id_loc.Text);
-    open;
-
-    if not IsEmpty then
-    begin
-      ShowMessage('Essa Pessoa já está Cadastrada em outro Local para esta Etapa deste Evento.');
-      Result := False;
-      Exit;
-    end;
-
-    Close;
+    ShowMessage('Essa Pessoa já está Cadastrada em outro Local para esta Etapa deste Evento.');
+    Result := False;
+    Exit;
   end;
+  dmTreinamento.qSelect.Close;
 
-  with dmTreinamento.qSelect do
+  dmTreinamento.qSelect.close;
+  dmTreinamento.qSelect.SQL.Clear;
+  dmTreinamento.qSelect.SQL.Add(
+    'Select bd_lotacao_atual_loc, ' +
+           'bd_lotacao_max_loc ' +
+    'From t_local ' +
+    'Where bd_id_loc = :bd_id_loc;');
+  dmTreinamento.qSelect.ParamByName('bd_id_loc').AsInteger := StrToIntDef(ed_id_loc.Text, 0);
+  dmTreinamento.qSelect.Open;
+
+  if  dmTreinamento.qSelect.FieldByName('bd_lotacao_atual_loc').AsInteger >=
+      dmTreinamento.qSelect.FieldByName('bd_lotacao_max_loc').AsInteger then
   begin
-    close;
-    SQL.Clear;
-    SQL.Add(
-    'SELECT bd_capacidade_atual_loc, ' +
-           'bd_capacidade_max_loc ' +
-    'FROM t_local WHERE bd_id_loc = :bd_id_loc;');
-    ParamByName('bd_id_loc').AsInteger := StrToInt(ed_id_loc.Text);
-    Open;
-
-    if FieldByName('bd_capacidade_atual_loc').AsInteger >=
-       FieldByName('bd_capacidade_max_loc').AsInteger then
-    begin
-      ShowMessage('A sala já atingiu a capacidade máxima.');
-      Result := False;
-      Exit;
-    end;
-
-    Close;
+    ShowMessage('A sala já atingiu a capacidade máxima.');
+    Result := False;
+    Exit;
   end;
-
+  dmTreinamento.qSelect.Close;
+  
   if cb_etapa_ses.Items.IndexOf(cb_etapa_ses.Text) = -1 then
   begin
     ShowMessage('A Etapa Informada Não é Válida.');
@@ -228,27 +214,26 @@ begin
     Exit;
   end;
 
-  with dmTreinamento.qSelect do
+  dmTreinamento.qSelect.close;
+  dmTreinamento.qSelect.SQL.Clear;
+  dmTreinamento.qSelect.SQL.Add(
+    'Select bd_inicio_eve ' +
+    'From t_evento ' +
+    'Where bd_id_eve = :bd_id_eve;');
+  dmTreinamento.qSelect.ParamByName('bd_id_eve').AsInteger := StrToIntDef(ed_id_eve.Text, 0);
+  dmTreinamento.qSelect.open;
+
+  if  dmTreinamento.qSelect.FieldByName('bd_inicio_eve').AsDateTime >
+      StrToDateTime(w_data_hora_inicio) then
   begin
-    close;
-    SQL.Clear;
-    SQL.Add('SELECT bd_inicio_eve FROM t_evento WHERE bd_id_eve = :bd_id_eve;');
-    ParamByName('bd_id_eve').AsInteger := StrToInt(ed_id_eve.Text);
-    open;
-
-    if FieldByName('bd_inicio_eve').AsDateTime >
-       StrToDateTime(DateToStr(dtp_inicio_ses_date.Date) + ' ' + TimeToStr(dtp_inicio_ses_time.Time)) then
-    begin
-      ShowMessage('O Início da Sessão não pode ser antes do Início do Evento.');
-      Result := False;
-      Exit;
-    end;
-
-    Close;
+    ShowMessage('O Início da Sessão não pode ser antes do Início do Evento.');
+    Result := False;
+    Exit;
   end;
+  dmTreinamento.qSelect.Close;
 
-  if StrToDateTime(DateToStr(dtp_fim_ses_date.Date) + ' ' + TimeToStr(dtp_fim_ses_time.Time)) <=
-     StrToDateTime(DateToStr(dtp_inicio_ses_date.Date) + ' ' + TimeToStr(dtp_inicio_ses_time.Time)) then
+  if StrToDateTime(w_data_hora_fim) <=
+     StrToDateTime(w_data_hora_inicio) then
   begin
     ShowMessage('O Fim da Sessão não pode ser antes ou igual ao Início do Sessão.');
     Result := false;

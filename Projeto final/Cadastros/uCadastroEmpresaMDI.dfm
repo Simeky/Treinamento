@@ -1,6 +1,6 @@
 inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
-  Left = -12
-  Top = 90
+  Left = -6
+  Top = 92
   VertScrollBar.Range = 0
   AutoScroll = False
   Caption = 'Cadastro Empresa'
@@ -14,130 +14,130 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
   inherited tb_ferramentas: TToolBar
     Width = 1526
   end
-  inherited pa_cadastro: TPanel
+  inherited pn_cadastro: TPanel
     Width = 1526
     Height = 184
     AutoSize = True
-    object la_id_emp: TLabel
+    object lb_id_emp: TLabel
       Left = 24
       Top = 16
       Width = 55
       Height = 13
       Caption = 'ID Empresa'
     end
-    object la_nome_fantasia_emp: TLabel
+    object lb_nome_fantasia_emp: TLabel
       Left = 8
       Top = 48
       Width = 71
       Height = 13
       Caption = 'Nome Fantasia'
     end
-    object la_razao_social_emp: TLabel
+    object lb_razao_social_emp: TLabel
       Left = 736
       Top = 48
       Width = 63
       Height = 13
       Caption = 'Raz'#227'o Social'
     end
-    object la_cnpj_emp: TLabel
+    object lb_cnpj_emp: TLabel
       Left = 296
       Top = 16
       Width = 27
       Height = 13
       Caption = 'CNPJ'
     end
-    object la_inscricao_estadual_emp: TLabel
+    object lb_inscricao_estadual_emp: TLabel
       Left = 744
       Top = 16
       Width = 82
       Height = 13
       Caption = 'Incri'#231#227'o Estadual'
     end
-    object la_inscricao_municipal_emp: TLabel
+    object lb_inscricao_municipal_emp: TLabel
       Left = 1128
       Top = 16
       Width = 91
       Height = 13
       Caption = 'Inscri'#231#227'o Municipal'
     end
-    object la_telefone_emp: TLabel
+    object lb_telefone_emp: TLabel
       Left = 1280
       Top = 80
       Width = 42
       Height = 13
       Caption = 'Telefone'
     end
-    object la_email_emp: TLabel
+    object lb_email_emp: TLabel
       Left = 50
       Top = 80
       Width = 28
       Height = 13
       Caption = 'E-mail'
     end
-    object la_cep_emp: TLabel
+    object lb_cep_emp: TLabel
       Left = 560
       Top = 16
       Width = 21
       Height = 13
       Caption = 'CEP'
     end
-    object la_uf_emp: TLabel
+    object lb_uf_emp: TLabel
       Left = 64
       Top = 112
       Width = 14
       Height = 13
       Caption = 'UF'
     end
-    object la_cidade_emp: TLabel
+    object lb_cidade_emp: TLabel
       Left = 136
       Top = 112
       Width = 33
       Height = 13
       Caption = 'Cidade'
     end
-    object la_bairro_emp: TLabel
+    object lb_bairro_emp: TLabel
       Left = 648
       Top = 112
       Width = 27
       Height = 13
       Caption = 'Bairro'
     end
-    object la_logradouro_emp: TLabel
+    object lb_logradouro_emp: TLabel
       Left = 1008
       Top = 112
       Width = 54
       Height = 13
       Caption = 'Logradouro'
     end
-    object la_complemento_emp: TLabel
+    object lb_complemento_emp: TLabel
       Left = 14
       Top = 144
       Width = 64
       Height = 13
       Caption = 'Complemento'
     end
-    object la_site_emp: TLabel
+    object lb_site_emp: TLabel
       Left = 656
       Top = 80
       Width = 18
       Height = 13
       Caption = 'Site'
     end
-    object la_fundacao_emp: TLabel
+    object lb_fundacao_emp: TLabel
       Left = 368
       Top = 144
       Width = 86
       Height = 13
       Caption = 'Data de funda'#231#227'o'
     end
-    object la_tipo_emp: TLabel
+    object lb_tipo_emp: TLabel
       Left = 1040
       Top = 144
       Width = 21
       Height = 13
       Caption = 'Tipo'
     end
-    object la_num_endereco_emp: TLabel
+    object lb_num_endereco_emp: TLabel
       Left = 688
       Top = 144
       Width = 100
@@ -170,9 +170,9 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
     object med_cnpj_emp: TMaskEdit
       Left = 328
       Top = 16
-      Width = 113
+      Width = 111
       Height = 21
-      EditMask = '00\.000\.000\/0000\-00;1;_'
+      EditMask = '00\.000\.000\/0000\-00;1; '
       MaxLength = 18
       TabOrder = 1
       Text = '  .   .   /    -  '
@@ -180,9 +180,9 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
     object med_cep_emp: TMaskEdit
       Left = 584
       Top = 16
-      Width = 57
+      Width = 55
       Height = 21
-      EditMask = '00000\-00;1;_'
+      EditMask = '00000\-00;1; '
       MaxLength = 8
       TabOrder = 2
       Text = '     -  '
@@ -205,7 +205,7 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
       Text = '0'
       id = 0
     end
-    object ckb_matriz_emp: TCheckBox
+    object ck_matriz_emp: TCheckBox
       Left = 1264
       Top = 144
       Width = 49
@@ -214,7 +214,7 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
       Caption = 'Matriz'
       TabOrder = 18
     end
-    object ckb_ativa_emp: TCheckBox
+    object ck_ativa_emp: TCheckBox
       Left = 1376
       Top = 144
       Width = 41
@@ -236,9 +236,9 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
     object med_telefone_emp: TMaskEdit
       Left = 1328
       Top = 80
-      Width = 89
+      Width = 85
       Height = 21
-      EditMask = '!\(00\) 90000-0000;1;_'
+      EditMask = '!\(00\) 90000-0000;1; '
       MaxLength = 15
       TabOrder = 9
       Text = '(  )      -    '
@@ -260,9 +260,9 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
     object med_uf_emp: TMaskEdit
       Left = 88
       Top = 112
-      Width = 25
+      Width = 23
       Height = 21
-      EditMask = 'LL;1;_'
+      EditMask = 'LL;1; '
       MaxLength = 2
       TabOrder = 10
       Text = '  '

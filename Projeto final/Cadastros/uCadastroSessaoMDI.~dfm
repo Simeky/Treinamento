@@ -1,6 +1,6 @@
 inherited frCadastroSessaoMDI: TfrCadastroSessaoMDI
-  Left = 826
-  Top = 197
+  Left = 383
+  Top = 189
   Width = 386
   Height = 267
   Caption = 'Cadastro de Sess'#245'es'
@@ -13,7 +13,7 @@ inherited frCadastroSessaoMDI: TfrCadastroSessaoMDI
   inherited tb_ferramentas: TToolBar
     Width = 370
   end
-  inherited pa_cadastro: TPanel
+  inherited pn_cadastro: TPanel
     Width = 370
     Height = 182
     object la_id_ses: TLabel

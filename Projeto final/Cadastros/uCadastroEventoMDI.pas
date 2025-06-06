@@ -9,11 +9,11 @@ uses
 
 type
   TfrCadastroEventoMDI = class(TfrCadastroPadraoMDI)
-    la_id_eve: TLabel;
-    la_nome_eve: TLabel;
-    la_desc_eve: TLabel;
-    la_inicio_eve: TLabel;
-    la_fim_eve: TLabel;
+    lb_id_eve: TLabel;
+    lb_nome_eve: TLabel;
+    lb_desc_eve: TLabel;
+    lb_inicio_eve: TLabel;
+    lb_fim_eve: TLabel;
     ed_id_eve: TEdit_numerico;
     ed_nome_eve: TEdit;
     ed_desc_eve: TEdit;
@@ -50,7 +50,7 @@ uses udmTreinamento, uConsultaEventoMDI;
 procedure TfrCadastroEventoMDI.carregar;
 begin
   inherited;
-  ed_id_eve.Text            := tabela.FieldByName('bd_id_eve').AsString;
+  //ed_id_eve.Text            := tabela.FieldByName('bd_id_eve').AsString;
   ed_nome_eve.Text          := tabela.FieldByName('bd_nome_eve').AsString;
   ed_desc_eve.Text          := tabela.FieldByName('bd_desc_eve').AsString;
   dtp_inicio_eve_date.Date  := tabela.FieldByName('bd_inicio_eve').AsDateTime;
@@ -67,7 +67,7 @@ end;
 procedure TfrCadastroEventoMDI.salvar;
 begin
   inherited;
-  tabela.FieldByName('bd_id_eve').AsInteger       := StrToIntDef(ed_id_eve.Text, 0);
+  //tabela.FieldByName('bd_id_eve').AsInteger       := StrToIntDef(ed_id_eve.Text, 0);
   tabela.FieldByName('bd_nome_eve').AsString      := ed_nome_eve.Text;
   tabela.FieldByName('bd_desc_eve').AsString      := ed_desc_eve.Text;
   tabela.FieldByName('bd_inicio_eve').AsDateTime  := StrToDateTime(DateToStr(dtp_inicio_eve_date.Date) + ' ' + TimeToStr(dtp_inicio_eve_time.Time));
@@ -101,7 +101,12 @@ begin
 end;
 
 function TfrCadastroEventoMDI.validar: Boolean;
+var
+  w_data_hora_inicio, w_data_hora_fim : String;
 begin
+
+  w_data_hora_inicio  := DateToStr(dtp_inicio_eve_date.Date) + ' ' + TimeToStr(dtp_inicio_eve_time.Time);
+  w_data_hora_fim     := DateToStr(dtp_fim_eve_date.Date) + ' ' + TimeToStr(dtp_fim_eve_time.Time);
 
   if Trim(ed_nome_eve.Text) = '' then
   begin
@@ -110,14 +115,14 @@ begin
     Exit;
   end;
 
-  if StrToDateTime(DateToStr(dtp_inicio_eve_date.Date) + ' ' + TimeToStr(dtp_inicio_eve_time.Time)) <= Now then
+  if StrToDateTime(w_data_hora_inicio) < Now then
   begin
-    ShowMessage('O Início do Evento não pode ser antes ou igual a Data e Hora de agora.');
+    ShowMessage('O Início do Evento não pode ser antes da Data e Hora de agora.');
     Result := False;
     Exit;
   end;
 
-  if StrToDateTime(DateToStr(dtp_fim_eve_date.Date) + ' ' + TimeToStr(dtp_fim_eve_time.Time)) <= StrToDateTime(DateToStr(dtp_inicio_eve_date.Date) + ' ' + TimeToStr(dtp_inicio_eve_time.Time)) then
+  if StrToDateTime(w_data_hora_fim) <= StrToDateTime(w_data_hora_inicio) then
   begin
     ShowMessage('O Fim do Evento não pode ser antes ou igual ao Início do Evento');
     Result := False;

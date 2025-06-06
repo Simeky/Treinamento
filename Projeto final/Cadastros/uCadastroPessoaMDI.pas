@@ -9,13 +9,13 @@ uses
 
 type
   TfrCadastroPessoaMDI = class(TfrCadastroPadraoMDI)
-    la_id_pes: TLabel;
-    la_nome_pes: TLabel;
-    la_email_pes: TLabel;
-    la_cpf_pes: TLabel;
-    la_id_afi: TLabel;
+    lb_id_pes: TLabel;
+    lb_nome_pes: TLabel;
+    lb_email_pes: TLabel;
+    lb_cpf_pes: TLabel;
+    lb_id_emp: TLabel;
     ed_id_pes: TEdit_numerico;
-    ed_id_afi: TEdit_numerico;
+    ed_id_emp: TEdit_numerico;
     ed_nome_pes: TEdit;
     ed_email_pes: TEdit;
     med_cpf_pes: TMaskEdit;
@@ -52,7 +52,7 @@ begin
   ed_nome_pes.Text  := tabela.FieldByName('bd_nome_pes').AsString;
   ed_email_pes.Text := tabela.FieldByName('bd_email_pes').AsString;
   med_cpf_pes.Text  := tabela.FieldByName('bd_cpf_pes').AsString;
-  ed_id_afi.Text    := tabela.FieldByName('bd_id_emp').AsString;
+  ed_id_emp.Text    := tabela.FieldByName('bd_id_emp').AsString;
 end;
 
 function TfrCadastroPessoaMDI.consultar: TForm;
@@ -68,7 +68,7 @@ begin
   tabela.FieldByName('bd_nome_pes').AsString  := ed_nome_pes.Text;
   tabela.FieldByName('bd_email_pes').AsString := ed_email_pes.Text;
   tabela.FieldByName('bd_cpf_pes').AsString   := med_cpf_pes.Text;
-  tabela.FieldByName('bd_id_emp').AsInteger   := StrToIntDef(ed_id_afi.Text, 0);
+  tabela.FieldByName('bd_id_emp').AsInteger   := StrToIntDef(ed_id_emp.Text, 0);
 
 end;
 
@@ -97,30 +97,26 @@ end;
 function TfrCadastroPessoaMDI.validar: Boolean;
 begin
 
-  with dmTreinamento.qSelect do
+  dmTreinamento.qSelect.Close;
+  dmTreinamento.qSelect.SQL.Clear;
+  dmTreinamento.qSelect.SQL.Add(
+    'Select 1 from t_empresa ' +
+    'Where bd_id_emp = :bd_id_emp;');
+
+  dmTreinamento.qSelect.ParamByName('bd_id_emp').AsInteger := StrToIntDef(ed_id_emp.Text, 0);
+  dmTreinamento.qSelect.open;
+
+  if dmTreinamento.qSelect.IsEmpty then
   begin
-    Close;
-    SQL.Clear;
-    SQL.Add(
-      'Select 1 from t_empresa ' +
-      'Where bd_id_emp = :bd_id_emp;');
-
-    ParamByName('bd_id_emp').AsInteger := StrToInt(ed_id_afi.Text);
-    open;
-
-    if IsEmpty then
-    begin
-      ShowMessage('A Empresa com o ID: ' + ed_id_afi.Text + ' Não existe.' );
-      Result := False;
-      Exit;
-    end;
-
-    Close;
+    ShowMessage('A Empresa com o ID: ' + ed_id_emp.Text + ' Não existe.' );
+    Result := False;
+    Exit;
   end;
+  dmTreinamento.qSelect.Close;
 
   if not validar_email(ed_email_pes.Text) then
   begin
-    ShowMessage('O E-mail deve conter @ e .');
+    ShowMessage('O E-mail deve seguir o Formato xxx@xxx.');
     Result := False;
     Exit;
   end;

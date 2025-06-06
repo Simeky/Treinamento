@@ -9,15 +9,15 @@ uses
 
 type
   TfrCadastroPadraoMDI = class(TfrPadraoSimples)
-    tbt_consultar: TToolButton;
-    pa_cadastro: TPanel;
+    bt_consultar: TToolButton;
+    pn_cadastro: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure ed_idExit(Sender: TObject);
     procedure tbt_confirmarClick(Sender: TObject);
     procedure tbt_cancelarClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure tbt_consultarClick(Sender: TObject);
+    procedure bt_consultarClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -206,7 +206,7 @@ begin
   end;
 end;
 
-procedure TfrCadastroPadraoMDI.tbt_consultarClick(Sender: TObject);
+procedure TfrCadastroPadraoMDI.bt_consultarClick(Sender: TObject);
 begin
   inherited;
   consultar;

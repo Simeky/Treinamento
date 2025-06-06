@@ -35,7 +35,7 @@ inherited frConsultaEmpresaMDI: TfrConsultaEmpresaMDI
         Expanded = False
         FieldName = 'bd_cnpj_emp'
         Title.Caption = 'CNPJ'
-        Width = 53
+        Width = 76
         Visible = True
       end
       item

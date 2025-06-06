@@ -7,16 +7,16 @@ drop trigger t_evento_bi_autoin;
 drop trigger t_local_bi_autoin;
 drop trigger t_pessoa_bi_autoin;
 drop trigger t_sessao_bi_autoin;
-drop trigger t_local_ai_capacidade_atual;
-drop trigger t_sessao_ai_update_capacidade;
-drop trigger t_sessao_bi_ex_capacidade;
+drop trigger t_local_ai_lotacao_atual;
+drop trigger t_sessao_ai_update_lotacao;
+drop trigger t_sessao_bi_ex_lotacao;
 drop trigger t_empresa_bd_pessoa;
 drop trigger t_evento_bd_sessao;
 drop trigger t_local_bd_sessao;
 drop trigger t_pessoa_bd_sessao;
-drop trigger t_sessao_ad_capacidade_atual;
-drop trigger t_sessao_au_capacidade_atual;
-drop trigger t_local_au_capacidade_zero;
+drop trigger t_sessao_ad_lotacao_atual;
+drop trigger t_sessao_au_lotacao_atual;
+drop trigger t_local_au_lotacao_zero;
 
 drop table t_sessao;
 drop table t_evento;
@@ -25,7 +25,7 @@ drop table t_local;
 drop table t_empresa;
 
 drop domain dm_boolean;
-drop domain dm_capacidade;
+drop domain dm_lotacao;
 drop domain dm_cep;
 drop domain dm_cnpj;
 drop domain dm_cpf;
@@ -58,7 +58,7 @@ COLLATE WIN_PTBR;
 
 CREATE DOMAIN DM_CPF AS CHAR(14);
 
-CREATE DOMAIN DM_CAPACIDADE AS INTEGER;
+CREATE DOMAIN DM_lotacao AS INTEGER;
 
 CREATE DOMAIN DM_ETAPA AS VARCHAR(60)
 CHARACTER SET WIN1252
@@ -139,8 +139,8 @@ constraint pk_t_evento primary key (bd_id_eve)
 Create table t_local (
 bd_id_loc integer,
 bd_nome_loc dm_nome, -- Sala 1
-bd_capacidade_max_loc dm_capacidade,
-bd_capacidade_atual_loc dm_capacidade,
+bd_lotacao_max_loc dm_lotacao,
+bd_lotacao_atual_loc dm_lotacao,
 constraint pk_t_local primary key (bd_id_loc)
 );
 
@@ -163,7 +163,7 @@ constraint fk_sessao_evento foreign key(bd_id_eve) references t_evento(bd_id_eve
   Exception
 */
 
-Create exception ex_lotacao_excedida 'Capacidade Máxima do local excedida!';
+Create exception ex_lotacao_excedida 'Lotação Máxima do local excedida!';
 
 /*
   Triggers
@@ -214,22 +214,22 @@ begin
     into new.bd_id_ses;
 end;
 
-CREATE trigger t_local_ai_capacidade_atual for t_local
+CREATE trigger t_local_ai_lotacao_atual for t_local
 active after insert position 0
 AS
 begin
-  update t_local set bd_capacidade_atual_loc = 0 where bd_id_loc = new.bd_id_loc;
+  update t_local set bd_lotacao_atual_loc = 0 where bd_id_loc = new.bd_id_loc;
 end;
 
-CREATE trigger t_sessao_bi_ex_capacidade for t_sessao
+CREATE trigger t_sessao_bi_ex_lotacao for t_sessao
 active before insert position 0
 AS
 DECLARE VARIABLE w_max INTEGER;
 DECLARE VARIABLE w_atual INTEGER;
 BEGIN
   SELECT
-    bd_capacidade_max_loc,
-    bd_capacidade_atual_loc
+    bd_lotacao_max_loc,
+    bd_lotacao_atual_loc
   FROM t_local
   WHERE bd_id_loc = NEW.bd_id_loc
   INTO :w_max, :w_atual;
@@ -238,7 +238,7 @@ BEGIN
     EXCEPTION ex_lotacao_excedida;
 END;
 
-CREATE trigger t_sessao_ai_update_capacidade for t_sessao
+CREATE trigger t_sessao_ai_update_lotacao for t_sessao
 active after insert position 0
 AS
 begin
@@ -247,8 +247,7 @@ begin
                  where  bd_id_loc = new.bd_id_loc
                  and    bd_id_pes = new.bd_id_pes
                  and    bd_id_ses <> new.bd_id_ses)) then
-    update t_local set bd_capacidade_atual_loc = bd_capacidade_atual_loc + 1
-    where bd_id_loc = new.bd_id_loc;
+    update t_local set bd_lotacao_atual_loc = bd_lotacao_atual_loc + 1 where bd_id_loc = new.bd_id_loc;
 end;
 
 CREATE trigger t_empresa_bd_pessoa for t_empresa
@@ -279,34 +278,31 @@ begin
   Delete from t_sessao where bd_id_pes = old.bd_id_pes;
 end;
 
-CREATE trigger t_sessao_ad_capacidade_atual for t_sessao
+CREATE trigger t_sessao_ad_lotacao_atual for t_sessao
 active after delete position 0
 AS
 begin
-  if (exists(select 1 from t_local where bd_id_loc = old.bd_id_loc and bd_capacidade_atual_loc > 0 )) then
-    update t_local set bd_capacidade_atual_loc = bd_capacidade_atual_loc - 1
-    where bd_id_loc = old.bd_id_loc;
+  if (exists(select 1 from t_local where bd_id_loc = old.bd_id_loc and bd_lotacao_atual_loc > 0 )) then
+    update t_local set bd_lotacao_atual_loc = bd_lotacao_atual_loc - 1 where bd_id_loc = old.bd_id_loc;
 end;
 
-CREATE trigger t_sessao_au_capacidade_atual for t_sessao
+CREATE trigger t_sessao_au_lotacao_atual for t_sessao
 active after update position 0
 AS
 begin
-  if (exists(select 1 from t_local where bd_id_loc = old.bd_id_loc and bd_capacidade_atual_loc > 0 )) then
-    update t_local set bd_capacidade_atual_loc = bd_capacidade_atual_loc - 1
-    where bd_id_loc = old.bd_id_loc;
-  update t_local set bd_capacidade_atual_loc = bd_capacidade_atual_loc + 1
-  where bd_id_loc = new.bd_id_loc;
+  if (exists(select 1 from t_local where bd_id_loc = old.bd_id_loc and bd_lotacao_atual_loc > 0 )) then
+    update t_local set bd_lotacao_atual_loc = bd_lotacao_atual_loc - 1 where bd_id_loc = old.bd_id_loc;
+
+  update t_local set bd_lotacao_atual_loc = bd_lotacao_atual_loc + 1 where bd_id_loc = new.bd_id_loc;
 end;
 
-CREATE trigger t_local_au_capacidade_zero for t_local
+CREATE trigger t_local_au_lotacao_zero for t_local
 active after update position 0
 AS
 begin
-    if ((select bd_capacidade_atual_loc from t_local where bd_id_loc = new.bd_id_loc) < 0) then
-        update t_local set bd_capacidade_atual_loc = 0 where bd_id_loc = new.bd_id_loc;
+    if ((select bd_lotacao_atual_loc from t_local where bd_id_loc = new.bd_id_loc) < 0) then
+        update t_local set bd_lotacao_atual_loc = 0 where bd_id_loc = new.bd_id_loc;
 end;
-
 
 
 
