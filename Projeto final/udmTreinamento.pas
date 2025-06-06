@@ -9,19 +9,19 @@ uses
 type
   TdmTreinamento = class(TDataModule)
     SQLConnection: TSQLConnection;
-    t_pessoa: TSQLTable;
+    tb_pessoa: TSQLTable;
     dsp_pessoa: TDataSetProvider;
     cds_pessoa: TClientDataSet;
-    t_local: TSQLTable;
+    tb_local: TSQLTable;
     dsp_local: TDataSetProvider;
     cds_local: TClientDataSet;
-    t_sessao: TSQLTable;
+    tb_sessao: TSQLTable;
     dsp_sessao: TDataSetProvider;
     cds_sessao: TClientDataSet;
-    t_empresa: TSQLTable;
+    tb_empresa: TSQLTable;
     dsp_empresa: TDataSetProvider;
     cds_empresa: TClientDataSet;
-    t_evento: TSQLTable;
+    tb_evento: TSQLTable;
     dsp_evento: TDataSetProvider;
     cds_evento: TClientDataSet;
     qSelect: TSQLQuery;

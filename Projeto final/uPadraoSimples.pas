@@ -12,10 +12,10 @@ type
     il_hot_images: TImageList;
     il_disable_images: TImageList;
     tb_ferramentas: TToolBar;
-    tbt_confirmar: TToolButton;
-    tbt_cancelar: TToolButton;
+    bt_confirmar: TToolButton;
+    bt_cancelar: TToolButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure tbt_cancelarClick(Sender: TObject);
+    procedure bt_cancelarClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
   private
@@ -37,7 +37,7 @@ begin
   Action := caFree;
 end;
 
-procedure TfrPadraoSimples.tbt_cancelarClick(Sender: TObject);
+procedure TfrPadraoSimples.bt_cancelarClick(Sender: TObject);
 begin
   close;
 end;
@@ -49,7 +49,7 @@ begin
     close;
 
   if Key = VK_RETURN then
-    tbt_confirmar.Click;
+    bt_confirmar.Click;
 end;
 
 end.

@@ -18,7 +18,8 @@ uses
   uCadastroSessaoMDI in 'Cadastros\uCadastroSessaoMDI.pas' {frCadastroSessaoMDI},
   uConsultaSessaoMDI in 'Consultas\uConsultaSessaoMDI.pas' {frConsultaSessaoMDI},
   uConsultaLocalPessoaMDI in 'Consultas\uConsultaLocalPessoaMDI.pas' {frConsultaLocalPessoaMDI},
-  uConsultaPessoaLocalMDI in 'Consultas\uConsultaPessoaLocalMDI.pas' {frConsultaPessoaLocalMDI};
+  uConsultaPessoaLocalMDI in 'Consultas\uConsultaPessoaLocalMDI.pas' {frConsultaPessoaLocalMDI},
+  uUtils in 'uUtils.pas';
 
 {$R *.res}
 

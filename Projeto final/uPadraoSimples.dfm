@@ -33,18 +33,18 @@ object frPadraoSimples: TfrPadraoSimples
     Images = il_images
     ShowCaptions = True
     TabOrder = 0
-    object tbt_confirmar: TToolButton
+    object bt_confirmar: TToolButton
       Left = 0
       Top = 0
       Caption = 'Confirmar'
       ImageIndex = 0
     end
-    object tbt_cancelar: TToolButton
+    object bt_cancelar: TToolButton
       Left = 51
       Top = 0
       Caption = 'Cancelar'
       ImageIndex = 1
-      OnClick = tbt_cancelarClick
+      OnClick = bt_cancelarClick
     end
   end
   object il_images: TImageList

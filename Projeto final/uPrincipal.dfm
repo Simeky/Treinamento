@@ -13,13 +13,13 @@ object frPrincipal: TfrPrincipal
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   FormStyle = fsMDIForm
-  Menu = MainMenu1
+  Menu = mm_menu_principal
   OldCreateOrder = False
   Position = poDesktopCenter
   WindowState = wsMaximized
   PixelsPerInch = 96
   TextHeight = 13
-  object la_principal: TLabel
+  object lb_principal: TLabel
     Left = 0
     Top = 0
     Width = 1528
@@ -36,41 +36,41 @@ object frPrincipal: TfrPrincipal
     ParentFont = False
     Layout = tlCenter
   end
-  object MainMenu1: TMainMenu
+  object mm_menu_principal: TMainMenu
     Left = 720
     Top = 72
-    object Cadastros1: TMenuItem
+    object mm_cadastros: TMenuItem
       Caption = 'Cadastros'
-      object empresa: TMenuItem
+      object mm_empresa: TMenuItem
         Caption = 'Empresa'
-        OnClick = empresaClick
+        OnClick = mm_empresaClick
       end
-      object pessoa: TMenuItem
+      object mm_pessoa: TMenuItem
         Caption = 'Pessoa'
-        OnClick = pessoaClick
+        OnClick = mm_pessoaClick
       end
-      object local: TMenuItem
+      object mm_local: TMenuItem
         Caption = 'Local'
-        OnClick = localClick
+        OnClick = mm_localClick
       end
-      object evento: TMenuItem
+      object mm_evento: TMenuItem
         Caption = 'Evento'
-        OnClick = eventoClick
+        OnClick = mm_eventoClick
       end
-      object sessao: TMenuItem
+      object mm_sessao: TMenuItem
         Caption = 'Sess'#227'o'
-        OnClick = sessaoClick
+        OnClick = mm_sessaoClick
       end
     end
-    object Consultas1: TMenuItem
+    object mm_consultas: TMenuItem
       Caption = 'Consultas'
-      object locais_pessoa: TMenuItem
+      object mm_locais_pessoa: TMenuItem
         Caption = 'Localiza'#231#227'o Pessoa em cada Etapa'
-        OnClick = locais_pessoaClick
+        OnClick = mm_locais_pessoaClick
       end
-      object quantidade_pessoas_sala: TMenuItem
+      object mm_quantidade_pessoas_sala: TMenuItem
         Caption = 'Pessoas em Determinada Sala'
-        OnClick = quantidade_pessoas_salaClick
+        OnClick = mm_quantidade_pessoas_salaClick
       end
     end
   end

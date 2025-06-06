@@ -1,8 +1,8 @@
 object dmTreinamento: TdmTreinamento
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 544
-  Top = 237
+  Left = 675
+  Top = 238
   Height = 293
   Width = 596
   object SQLConnection: TSQLConnection
@@ -23,7 +23,7 @@ object dmTreinamento: TdmTreinamento
     Left = 272
     Top = 16
   end
-  object t_pessoa: TSQLTable
+  object tb_pessoa: TSQLTable
     MaxBlobSize = -1
     SQLConnection = SQLConnection
     TableName = 'T_PESSOA'
@@ -31,7 +31,7 @@ object dmTreinamento: TdmTreinamento
     Top = 72
   end
   object dsp_pessoa: TDataSetProvider
-    DataSet = t_pessoa
+    DataSet = tb_pessoa
     Left = 32
     Top = 136
   end
@@ -42,7 +42,7 @@ object dmTreinamento: TdmTreinamento
     Left = 32
     Top = 192
   end
-  object t_local: TSQLTable
+  object tb_local: TSQLTable
     MaxBlobSize = -1
     SQLConnection = SQLConnection
     TableName = 'T_LOCAL'
@@ -50,7 +50,7 @@ object dmTreinamento: TdmTreinamento
     Top = 72
   end
   object dsp_local: TDataSetProvider
-    DataSet = t_local
+    DataSet = tb_local
     Left = 112
     Top = 136
   end
@@ -61,7 +61,7 @@ object dmTreinamento: TdmTreinamento
     Left = 112
     Top = 192
   end
-  object t_sessao: TSQLTable
+  object tb_sessao: TSQLTable
     MaxBlobSize = -1
     SQLConnection = SQLConnection
     TableName = 'T_SESSAO'
@@ -69,7 +69,7 @@ object dmTreinamento: TdmTreinamento
     Top = 72
   end
   object dsp_sessao: TDataSetProvider
-    DataSet = t_sessao
+    DataSet = tb_sessao
     Left = 192
     Top = 136
   end
@@ -80,7 +80,7 @@ object dmTreinamento: TdmTreinamento
     Left = 192
     Top = 192
   end
-  object t_empresa: TSQLTable
+  object tb_empresa: TSQLTable
     MaxBlobSize = -1
     SQLConnection = SQLConnection
     TableName = 'T_EMPRESA'
@@ -88,7 +88,7 @@ object dmTreinamento: TdmTreinamento
     Top = 72
   end
   object dsp_empresa: TDataSetProvider
-    DataSet = t_empresa
+    DataSet = tb_empresa
     Left = 272
     Top = 136
   end
@@ -99,7 +99,7 @@ object dmTreinamento: TdmTreinamento
     Left = 272
     Top = 192
   end
-  object t_evento: TSQLTable
+  object tb_evento: TSQLTable
     MaxBlobSize = -1
     SQLConnection = SQLConnection
     TableName = 'T_EVENTO'
@@ -107,7 +107,7 @@ object dmTreinamento: TdmTreinamento
     Top = 72
   end
   object dsp_evento: TDataSetProvider
-    DataSet = t_evento
+    DataSet = tb_evento
     Left = 352
     Top = 136
   end

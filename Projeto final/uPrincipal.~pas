@@ -8,24 +8,24 @@ uses
 
 type
   TfrPrincipal = class(TForm)
-    MainMenu1: TMainMenu;
-    Cadastros1: TMenuItem;
-    pessoa: TMenuItem;
-    local: TMenuItem;
-    sessao: TMenuItem;
-    empresa: TMenuItem;
-    evento: TMenuItem;
-    Consultas1: TMenuItem;
-    locais_pessoa: TMenuItem;
-    quantidade_pessoas_sala: TMenuItem;
-    la_principal: TLabel;
-    procedure pessoaClick(Sender: TObject);
-    procedure empresaClick(Sender: TObject);
-    procedure eventoClick(Sender: TObject);
-    procedure localClick(Sender: TObject);
-    procedure sessaoClick(Sender: TObject);
-    procedure locais_pessoaClick(Sender: TObject);
-    procedure quantidade_pessoas_salaClick(Sender: TObject);
+    mm_menu_principal: TMainMenu;
+    mm_cadastros: TMenuItem;
+    mm_pessoa: TMenuItem;
+    mm_local: TMenuItem;
+    mm_sessao: TMenuItem;
+    mm_empresa: TMenuItem;
+    mm_evento: TMenuItem;
+    mm_consultas: TMenuItem;
+    mm_locais_pessoa: TMenuItem;
+    mm_quantidade_pessoas_sala: TMenuItem;
+    lb_principal: TLabel;
+    procedure mm_pessoaClick(Sender: TObject);
+    procedure mm_empresaClick(Sender: TObject);
+    procedure mm_eventoClick(Sender: TObject);
+    procedure mm_localClick(Sender: TObject);
+    procedure mm_sessaoClick(Sender: TObject);
+    procedure mm_locais_pessoaClick(Sender: TObject);
+    procedure mm_quantidade_pessoas_salaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,37 +45,37 @@ uses uCadastroPessoaMDI, uCadastroEmpresaMDI, uCadastroEventoMDI,
 
 { TfrPrincipal }
 
-procedure TfrPrincipal.pessoaClick(Sender: TObject);
+procedure TfrPrincipal.mm_pessoaClick(Sender: TObject);
 begin
    TfrCadastroPessoaMDI.Create(self);
 end;
 
-procedure TfrPrincipal.empresaClick(Sender: TObject);
+procedure TfrPrincipal.mm_empresaClick(Sender: TObject);
 begin
   TfrCadastroEmpresaMDI.Create(self);
 end;
 
-procedure TfrPrincipal.eventoClick(Sender: TObject);
+procedure TfrPrincipal.mm_eventoClick(Sender: TObject);
 begin
   TfrCadastroEventoMDI.Create(Self);
 end;
 
-procedure TfrPrincipal.localClick(Sender: TObject);
+procedure TfrPrincipal.mm_localClick(Sender: TObject);
 begin
   TfrCadastroLocalMDI.Create(self);
 end;
 
-procedure TfrPrincipal.sessaoClick(Sender: TObject);
+procedure TfrPrincipal.mm_sessaoClick(Sender: TObject);
 begin
  TfrCadastroSessaoMDI.Create(self);
 end;
 
-procedure TfrPrincipal.locais_pessoaClick(Sender: TObject);
+procedure TfrPrincipal.mm_locais_pessoaClick(Sender: TObject);
 begin
   TfrConsultaLocalPessoaMDI.Create(self);
 end;
 
-procedure TfrPrincipal.quantidade_pessoas_salaClick(Sender: TObject);
+procedure TfrPrincipal.mm_quantidade_pessoas_salaClick(Sender: TObject);
 begin
   TfrConsultaPessoaLocalMDI.Create(self);
 end;
