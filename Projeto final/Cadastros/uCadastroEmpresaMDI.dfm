@@ -167,7 +167,7 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
       Height = 21
       TabOrder = 6
     end
-    object med_cnpj_emp: TMaskEdit
+    object ed_cnpj_emp: TMaskEdit
       Left = 328
       Top = 16
       Width = 111
@@ -177,7 +177,7 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
       TabOrder = 1
       Text = '  .   .   /    -  '
     end
-    object med_cep_emp: TMaskEdit
+    object ed_cep_emp: TMaskEdit
       Left = 584
       Top = 16
       Width = 55
@@ -233,7 +233,7 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
       Time = 45806.628773703710000000
       TabOrder = 15
     end
-    object med_telefone_emp: TMaskEdit
+    object ed_telefone_emp: TMaskEdit
       Left = 1328
       Top = 80
       Width = 85
@@ -257,7 +257,7 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
       Height = 21
       TabOrder = 8
     end
-    object med_uf_emp: TMaskEdit
+    object ed_uf_emp: TMaskEdit
       Left = 88
       Top = 112
       Width = 23

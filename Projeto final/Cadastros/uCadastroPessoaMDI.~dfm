@@ -84,7 +84,7 @@ inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
       Height = 21
       TabOrder = 2
     end
-    object med_cpf_pes: TMaskEdit
+    object ed_cpf_pes: TMaskEdit
       Left = 88
       Top = 88
       Width = 118

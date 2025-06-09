@@ -18,7 +18,7 @@ type
     ed_id_emp: TEdit_numerico;
     ed_nome_pes: TEdit;
     ed_email_pes: TEdit;
-    med_cpf_pes: TMaskEdit;
+    ed_cpf_pes: TMaskEdit;
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
@@ -51,7 +51,7 @@ begin
   ed_id_pes.Text    := tabela.FieldByName('bd_id_pes').AsString;
   ed_nome_pes.Text  := tabela.FieldByName('bd_nome_pes').AsString;
   ed_email_pes.Text := tabela.FieldByName('bd_email_pes').AsString;
-  med_cpf_pes.Text  := tabela.FieldByName('bd_cpf_pes').AsString;
+  ed_cpf_pes.Text  := tabela.FieldByName('bd_cpf_pes').AsString;
   ed_id_emp.Text    := tabela.FieldByName('bd_id_emp').AsString;
 end;
 
@@ -67,7 +67,7 @@ begin
   tabela.FieldByName('bd_id_pes').AsInteger   := StrToIntDef(ed_id_pes.Text, 0);
   tabela.FieldByName('bd_nome_pes').AsString  := ed_nome_pes.Text;
   tabela.FieldByName('bd_email_pes').AsString := ed_email_pes.Text;
-  tabela.FieldByName('bd_cpf_pes').AsString   := med_cpf_pes.Text;
+  tabela.FieldByName('bd_cpf_pes').AsString   := ed_cpf_pes.Text;
   tabela.FieldByName('bd_id_emp').AsInteger   := StrToIntDef(ed_id_emp.Text, 0);
 
 end;
@@ -121,7 +121,7 @@ begin
     Exit;
   end;
 
-  if not validar_cpf(med_cpf_pes.Text) then
+  if not validar_cpf(ed_cpf_pes.Text) then
   begin
     ShowMessage('Insira um CPF válido.');
     Result := False;

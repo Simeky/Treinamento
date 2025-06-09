@@ -30,17 +30,17 @@ type
     ed_id_emp: TEdit_numerico;
     ed_nome_fantasia_emp: TEdit;
     ed_razao_social_emp: TEdit;
-    med_cnpj_emp: TMaskEdit;
-    med_cep_emp: TMaskEdit;
+    ed_cnpj_emp: TMaskEdit;
+    ed_cep_emp: TMaskEdit;
     ed_inscricao_estadual_emp: TEdit_numerico;
     ed_inscricao_municipal_emp: TEdit_numerico;
     ck_matriz_emp: TCheckBox;
     ck_ativa_emp: TCheckBox;
     dtp_fundacao_emp: TDateTimePicker;
-    med_telefone_emp: TMaskEdit;
+    ed_telefone_emp: TMaskEdit;
     ed_email_emp: TEdit;
     ed_site_emp: TEdit;
-    med_uf_emp: TMaskEdit;
+    ed_uf_emp: TMaskEdit;
     ed_cidade_emp: TEdit;
     ed_bairro_emp: TEdit;
     ed_logradouro_emp: TEdit;
@@ -79,13 +79,13 @@ begin
   ed_id_emp.Text                  := tabela.FieldByName('bd_id_emp').AsString;
   ed_nome_fantasia_emp.Text       := tabela.FieldByName('bd_nome_fantasia_emp').AsString;
   ed_razao_social_emp.Text        := tabela.FieldByName('bd_razao_social_emp').AsString;
-  med_cnpj_emp.Text               := tabela.FieldByName('bd_cnpj_emp').AsString;
+  ed_cnpj_emp.Text               := tabela.FieldByName('bd_cnpj_emp').AsString;
   ed_inscricao_estadual_emp.Text  := tabela.FieldByName('bd_inscricao_estadual_emp').AsString;
   ed_inscricao_municipal_emp.Text := tabela.FieldByName('bd_inscricao_municipal_emp').AsString;
-  med_telefone_emp.Text           := tabela.FieldByName('bd_telefone_emp').AsString;
+  ed_telefone_emp.Text           := tabela.FieldByName('bd_telefone_emp').AsString;
   ed_email_emp.Text               := tabela.FieldByName('bd_email_emp').AsString;
-  med_cep_emp.Text                := tabela.FieldByName('bd_cep_emp').AsString;
-  med_uf_emp.Text                 := tabela.FieldByName('bd_uf_emp').AsString;
+  ed_cep_emp.Text                := tabela.FieldByName('bd_cep_emp').AsString;
+  ed_uf_emp.Text                 := tabela.FieldByName('bd_uf_emp').AsString;
   ed_cidade_emp.Text              := tabela.FieldByName('bd_cidade_emp').AsString;
   ed_bairro_emp.Text              := tabela.FieldByName('bd_bairro_emp').AsString;
   ed_logradouro_emp.Text          := tabela.FieldByName('bd_logradouro_emp').AsString;
@@ -117,13 +117,13 @@ begin
   tabela.FieldByName('bd_id_emp').AsInteger                 := StrToIntDef(ed_id_emp.Text, 0);
   tabela.FieldByName('bd_nome_fantasia_emp').AsString       := ed_nome_fantasia_emp.Text;
   tabela.FieldByName('bd_razao_social_emp').AsString        := ed_razao_social_emp.Text;
-  tabela.FieldByName('bd_cnpj_emp').AsString                := med_cnpj_emp.Text;
+  tabela.FieldByName('bd_cnpj_emp').AsString                := ed_cnpj_emp.Text;
   tabela.FieldByName('bd_inscricao_estadual_emp').AsString  := ed_inscricao_estadual_emp.Text;
   tabela.FieldByName('bd_inscricao_municipal_emp').AsString := ed_inscricao_municipal_emp.Text;
-  tabela.FieldByName('bd_telefone_emp').AsString            := med_telefone_emp.Text;
+  tabela.FieldByName('bd_telefone_emp').AsString            := ed_telefone_emp.Text;
   tabela.FieldByName('bd_email_emp').AsString               := ed_email_emp.Text;
-  tabela.FieldByName('bd_cep_emp').AsString                 := med_cep_emp.Text;
-  tabela.FieldByName('bd_uf_emp').AsString                  := UpperCase(med_uf_emp.Text);
+  tabela.FieldByName('bd_cep_emp').AsString                 := ed_cep_emp.Text;
+  tabela.FieldByName('bd_uf_emp').AsString                  := UpperCase(ed_uf_emp.Text);
   tabela.FieldByName('bd_cidade_emp').AsString              := ed_cidade_emp.Text;
   tabela.FieldByName('bd_bairro_emp').AsString              := ed_bairro_emp.Text;
   tabela.FieldByName('bd_logradouro_emp').AsString          := ed_logradouro_emp.Text;
@@ -169,14 +169,14 @@ end;
 function TfrCadastroEmpresaMDI.validar: Boolean;
 begin
 
-  if not validar_cnpj(med_cnpj_emp.Text) then
+  if not validar_cnpj(ed_cnpj_emp.Text) then
   begin
     ShowMessage('Insira um CNPJ Válido.');
     Result := False;
     Exit;
   end;
 
-  if Trim(so_numeros(med_cep_emp.Text)) = '' then
+  if Trim(so_numeros(ed_cep_emp.Text)) = '' then
   begin
     ShowMessage('O CEP deve ser Preenchido.');
     Result := False;
@@ -211,7 +211,7 @@ begin
     Exit;
   end;
 
-  if Trim(med_uf_emp.Text) = '' then
+  if Trim(ed_uf_emp.Text) = '' then
   begin
     ShowMessage('A UF deve ser Preenchida.');
     Result := False;

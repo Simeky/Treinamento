@@ -191,15 +191,15 @@ begin
   dmTreinamento.qSelect.close;
   dmTreinamento.qSelect.SQL.Clear;
   dmTreinamento.qSelect.SQL.Add(
-    'Select bd_capacidade_atual_loc, ' +
-           'bd_capacidade_max_loc ' +
+    'Select bd_lotacao_atual_loc, ' +
+           'bd_lotacao_max_loc ' +
     'From t_local ' +
     'Where bd_id_loc = :bd_id_loc;');
   dmTreinamento.qSelect.ParamByName('bd_id_loc').AsInteger := StrToIntDef(ed_id_loc.Text, 0);
   dmTreinamento.qSelect.Open;
 
-  if  dmTreinamento.qSelect.FieldByName('bd_capacidade_atual_loc').AsInteger >=
-      dmTreinamento.qSelect.FieldByName('bd_capacidade_max_loc').AsInteger then
+  if  dmTreinamento.qSelect.FieldByName('bd_lotacao_atual_loc').AsInteger >=
+      dmTreinamento.qSelect.FieldByName('bd_lotacao_max_loc').AsInteger then
   begin
     ShowMessage('A sala já atingiu a capacidade máxima.');
     Result := False;

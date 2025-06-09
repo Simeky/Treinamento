@@ -1,6 +1,6 @@
 inherited frCadastroPadraoMDI: TfrCadastroPadraoMDI
-  Left = 272
-  Top = 183
+  Left = 395
+  Top = 55
   Height = 299
   Caption = 'frCadastroPadraoMDI'
   OldCreateOrder = True
@@ -9,8 +9,11 @@ inherited frCadastroPadraoMDI: TfrCadastroPadraoMDI
   TextHeight = 13
   inherited tb_ferramentas: TToolBar
     inherited bt_confirmar: TToolButton
+      Caption = 'Salvar'
+      OnClick = bt_confirmarClick
+    end
+    inherited bt_cancelar: TToolButton
       Caption = 'Excluir'
-      OnClick = tbt_confirmarClick
     end
     object bt_consultar: TToolButton
       Left = 102

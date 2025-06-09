@@ -13,8 +13,8 @@ type
     pn_cadastro: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure ed_idExit(Sender: TObject);
-    procedure tbt_confirmarClick(Sender: TObject);
-    procedure tbt_cancelarClick(Sender: TObject);
+    procedure bt_confirmarClick(Sender: TObject);
+    procedure bt_cancelarClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure bt_consultarClick(Sender: TObject);
@@ -127,46 +127,13 @@ begin
 
 end;
 
-procedure TfrCadastroPadraoMDI.tbt_confirmarClick(Sender: TObject);
-var
-  w_encontrou: Boolean;
+procedure TfrCadastroPadraoMDI.bt_consultarClick(Sender: TObject);
 begin
   inherited;
-  if Assigned(f_tabela) and Assigned(f_edit_id) then
-  begin
-    f_tabela.IndexFieldNames := f_indice;
-    if Pos(';', f_indice) > 0 then
-      w_encontrou := get_chave_composta
-    else
-      w_encontrou := f_tabela.FindKey([StrToIntDef(Trim(f_edit_id.Text), 0)]);
-
-    if w_encontrou then
-      f_tabela.Edit
-    else
-    begin
-      f_tabela.Insert;
-      if not get_insercao_chave_composta then
-        f_tabela.FieldByName(f_indice).AsInteger := StrToIntDef(f_edit_id.Text, 0);
-    end;
-
-    salvar;
-
-    if validar then
-    begin
-      f_tabela.Post;
-      f_tabela.ApplyUpdates(0);
-      f_tabela.Refresh;
-      limpar_campos;
-      if f_edit_id.CanFocus then
-        f_edit_id.SetFocus;
-    end
-    else
-      f_tabela.Cancel;    
-
-  end;
+  consultar;
 end;
 
-procedure TfrCadastroPadraoMDI.tbt_cancelarClick(Sender: TObject);
+procedure TfrCadastroPadraoMDI.bt_cancelarClick(Sender: TObject);
 var
   wIndice : String;
   wEdit   : TEdit;
@@ -206,15 +173,48 @@ begin
   end;
 end;
 
-procedure TfrCadastroPadraoMDI.bt_consultarClick(Sender: TObject);
-begin
-  inherited;
-  consultar;
-end;
-
 function TfrCadastroPadraoMDI.validar: Boolean;
 begin
   Result := true;
+end;
+
+procedure TfrCadastroPadraoMDI.bt_confirmarClick(Sender: TObject);
+var
+  w_encontrou: Boolean;
+begin
+  inherited;
+  if Assigned(f_tabela) and Assigned(f_edit_id) then
+  begin
+    f_tabela.IndexFieldNames := f_indice;
+    if Pos(';', f_indice) > 0 then
+      w_encontrou := get_chave_composta
+    else
+      w_encontrou := f_tabela.FindKey([StrToIntDef(Trim(f_edit_id.Text), 0)]);
+
+    if w_encontrou then
+      f_tabela.Edit
+    else
+    begin
+      f_tabela.Insert;
+      if not get_insercao_chave_composta then
+        f_tabela.FieldByName(f_indice).AsInteger := StrToIntDef(f_edit_id.Text, 0);
+    end;
+
+    salvar;
+
+    if validar then
+    begin
+      f_tabela.Post;
+      f_tabela.ApplyUpdates(0);
+      f_tabela.Refresh;
+      limpar_campos;
+      if f_edit_id.CanFocus then
+        f_edit_id.SetFocus;
+    end
+    else
+      f_tabela.Cancel;
+
+  end;
 end;
 
 end.

@@ -1,6 +1,6 @@
 inherited frConsultaEmpresaMDI: TfrConsultaEmpresaMDI
-  Left = -7
-  Top = 95
+  Left = -13
+  Top = 113
   Width = 1542
   Caption = 'Consulta de Empresas Cadastradas'
   PixelsPerInch = 96
@@ -21,21 +21,21 @@ inherited frConsultaEmpresaMDI: TfrConsultaEmpresaMDI
         Expanded = False
         FieldName = 'bd_nome_fantasia_emp'
         Title.Caption = 'Nome Fantasia'
-        Width = 107
+        Width = 103
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'bd_razao_social_emp'
         Title.Caption = 'Raz'#227'o Social'
-        Width = 129
+        Width = 92
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'bd_cnpj_emp'
         Title.Caption = 'CNPJ'
-        Width = 76
+        Width = 94
         Visible = True
       end
       item
@@ -56,7 +56,7 @@ inherited frConsultaEmpresaMDI: TfrConsultaEmpresaMDI
         Expanded = False
         FieldName = 'bd_telefone_emp'
         Title.Caption = 'Telefone'
-        Width = 53
+        Width = 87
         Visible = True
       end
       item
@@ -119,7 +119,7 @@ inherited frConsultaEmpresaMDI: TfrConsultaEmpresaMDI
         Expanded = False
         FieldName = 'bd_site_emp'
         Title.Caption = 'Site'
-        Width = 102
+        Width = 57
         Visible = True
       end
       item
