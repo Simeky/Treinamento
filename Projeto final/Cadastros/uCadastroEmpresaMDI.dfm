@@ -1,6 +1,6 @@
 inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
-  Left = -6
-  Top = 92
+  Left = -2
+  Top = 102
   VertScrollBar.Range = 0
   AutoScroll = False
   Caption = 'Cadastro Empresa'
@@ -152,6 +152,8 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
       TabOrder = 0
       Text = '0'
       id = 0
+      decimal = False
+      separador = ','
     end
     object ed_nome_fantasia_emp: TEdit
       Left = 88
@@ -176,6 +178,7 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
       MaxLength = 18
       TabOrder = 1
       Text = '  .   .   /    -  '
+      OnExit = ed_cnpj_empExit
     end
     object ed_cep_emp: TMaskEdit
       Left = 584
@@ -195,6 +198,8 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
       TabOrder = 3
       Text = '0'
       id = 0
+      decimal = False
+      separador = ','
     end
     object ed_inscricao_municipal_emp: TEdit_numerico
       Left = 1232
@@ -204,6 +209,8 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
       TabOrder = 4
       Text = '0'
       id = 0
+      decimal = False
+      separador = ','
     end
     object ck_matriz_emp: TCheckBox
       Left = 1264
@@ -303,6 +310,8 @@ inherited frCadastroEmpresaMDI: TfrCadastroEmpresaMDI
       TabOrder = 16
       Text = '0'
       id = 0
+      decimal = False
+      separador = ','
     end
     object ed_tipo_emp: TEdit
       Left = 1064

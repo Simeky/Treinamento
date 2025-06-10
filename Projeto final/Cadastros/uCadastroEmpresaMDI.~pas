@@ -48,6 +48,7 @@ type
     ed_num_endereco_emp: TEdit_numerico;
     ed_tipo_emp: TEdit;
     procedure FormShow(Sender: TObject);
+    procedure ed_cnpj_empExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -227,6 +228,17 @@ begin
 
   ShowMessage('Empresa Cadastrada ou Alterada com Sucesso.');
   Result := true;
+end;
+
+procedure TfrCadastroEmpresaMDI.ed_cnpj_empExit(Sender: TObject);
+begin
+  inherited;
+  if not validar_cnpj(ed_cnpj_emp.Text) then
+  begin
+    ShowMessage('Insira um CNPJ Válido.');
+    ed_cnpj_emp.SetFocus;
+  end;
+
 end;
 
 end.

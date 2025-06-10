@@ -1,6 +1,6 @@
 inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
-  Left = 477
-  Top = 235
+  Left = 570
+  Top = 244
   Width = 274
   Height = 241
   Caption = 'Cadastro de Pessoas'
@@ -60,6 +60,8 @@ inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
       TabOrder = 0
       Text = '0'
       id = 0
+      decimal = False
+      separador = ','
     end
     object ed_id_emp: TEdit_numerico
       Left = 88
@@ -69,6 +71,8 @@ inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
       TabOrder = 4
       Text = '0'
       id = 0
+      decimal = False
+      separador = ','
     end
     object ed_nome_pes: TEdit
       Left = 88
@@ -93,6 +97,7 @@ inherited frCadastroPessoaMDI: TfrCadastroPessoaMDI
       MaxLength = 14
       TabOrder = 3
       Text = '   .   .   -  '
+      OnExit = ed_cpf_pesExit
     end
   end
   inherited il_images: TImageList

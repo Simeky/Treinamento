@@ -20,6 +20,7 @@ type
     ed_email_pes: TEdit;
     ed_cpf_pes: TMaskEdit;
     procedure FormShow(Sender: TObject);
+    procedure ed_cpf_pesExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -137,7 +138,7 @@ begin
   dmTreinamento.qSelect.ParamByName('bd_cpf_pes').AsString := ed_cpf_pes.Text;
   dmTreinamento.qSelect.open;
 
-  if not dmTreinamento.qSelect.IsEmpty then
+  if (not dmTreinamento.qSelect.IsEmpty) then
   begin
     ShowMessage('A Pessoa com o CPF: ' + ed_cpf_pes.Text + ' Já está Cadastrada.' );
     Result := False;
@@ -147,6 +148,35 @@ begin
 
   ShowMessage('Pessoa cadastrada ou Alterada com Sucesso.');
   Result := True;
+end;
+
+procedure TfrCadastroPessoaMDI.ed_cpf_pesExit(Sender: TObject);
+begin
+  inherited;
+  if not validar_cpf(ed_cpf_pes.Text) then
+  begin
+    ShowMessage('Insira um CPF válido.');
+    ed_cpf_pes.SetFocus;
+
+  end;
+
+  dmTreinamento.qSelect.Close;
+  dmTreinamento.qSelect.SQL.Clear;
+  dmTreinamento.qSelect.SQL.Add(
+    'Select bd_id_pes, bd_cpf_pes from t_pessoa ' +
+    'Where bd_cpf_pes = :bd_cpf_pes;');
+
+  dmTreinamento.qSelect.ParamByName('bd_cpf_pes').AsString := ed_cpf_pes.Text;
+  dmTreinamento.qSelect.open;
+
+  if (not dmTreinamento.qSelect.IsEmpty) and
+     (dmTreinamento.qSelect.FieldByName('bd_id_pes').AsInteger <> StrToIntDef(ed_id_pes.Text, 0)) then
+  begin
+    ShowMessage('A Pessoa com o CPF: ' + ed_cpf_pes.Text + ' Já está Cadastrada.' );
+    //ed_cpf_pes.SetFocus;
+  end;
+  dmTreinamento.qSelect.Close;
+
 end;
 
 end.
